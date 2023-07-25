@@ -27,7 +27,8 @@ public class Account {
 		this.balance-=money;
 	}
 	
-	public void show(JspWriter out) throws IOException {//jsp에서 출력이되게 하기 위해서 out선언
+	public void show(JspWriter out) throws IOException {
+		//jsp에서 출력이되게 하기 위해서 out선언
 		
 		out.println("<p>");
 		out.println("은행명 : "+bank+"<br>");

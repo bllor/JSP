@@ -31,20 +31,33 @@
 		<h4>if~ else</h4>
 		
 		<%
-			int va1 =1 , va2=2;
+			int v1 =1 , v2=2;
 		
-			if(va1>va2){
+			if(v1>v2){
 				
 		%>
-			<p>var1이 var2보다 크다.</p>
+		
+			<p>v1이 v2보다 크다.</p>
+		
 		<%
 			}else{
 				
-		%>		
-				<p>var1이 var2보다 작다.</p>
+		%>	
+			
+				<p>v1이 v2보다 작다.</p>
+		
 		<%
 			}
 		%>
+		
+		<%
+			if(v1>v2){
+				out.println("<p>v1이 v2보다 크다.</p>");
+			}else{
+				out.println("<p>v1이 v2보다 작다.</p>");
+			}
+		%>
+		
 
 		<h4>if~ else if~ else</h4>
 		
