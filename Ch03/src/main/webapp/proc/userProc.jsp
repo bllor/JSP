@@ -6,7 +6,10 @@
  -->
  
  <%
- 	String uid= request.getParameter("uid");//form의 네임으로 받음 / get으로 시작하는 것은 반환되어야함 ->String으로 반환
+	//수신데이터 인코딩
+	request.setCharacterEncoding("UTF-8");
+ 
+ 	String uid= request.getParameter("uid");
  	String name= request.getParameter("name");
  	String age= request.getParameter("age");
  %>
