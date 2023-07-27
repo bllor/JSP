@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		
-		<h3>내장객체 값 확인</h3>
+		<h3>내장객체 값 확인(scopeResult)</h3>
 		<p>
 			pageContext 확인: 	<%= pageContext.getAttribute("name") %><br>
 				request 확인: 	<%= request.getAttribute("name") %><br>

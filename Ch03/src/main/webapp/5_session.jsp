@@ -1,4 +1,4 @@
-<%@page import="sub1.UserVo"%>
+<%@page import="sub01.UserVo"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -39,7 +39,7 @@
 			
 			
 			//session table에 userColumn 컬럼명으로 user객체 저장
-			session.setAttribute("userCoulmn", user);
+			session.setAttribute("userColumn", user);
 			//여기서 session은 세션컨트롤을 의미
 			//2번 째 값이 유저 
 		

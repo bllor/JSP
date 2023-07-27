@@ -16,7 +16,7 @@
 			application.setAttribute("name", "강감찬");
 		%>
 		
-		<h4>내장객체 값 확인</h4>
+		<h4>내장객체 값 확인(scopeTest)</h4>
 		<p>
 			pageContext 확인: 	<%= pageContext.getAttribute("name") %><br>
 				request 확인: 	<%= request.getAttribute("name") %><br>

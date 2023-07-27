@@ -1,20 +1,11 @@
-package sub01;
+package sub1;
 
-public class UserVo {
+public class UserBean {
 
-	
 	private String uid;
 	private String name;
 	private String hp;
 	private int age;
-	
-	
-	public UserVo(String uid, String name, String hp, int age) {
-		this.uid = uid;
-		this.name = name;
-		this.hp = hp;
-		this.age = age;
-	}
 	
 	
 	public String getUid() {
@@ -41,9 +32,6 @@ public class UserVo {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
-	
-	
 	
 	
 }
