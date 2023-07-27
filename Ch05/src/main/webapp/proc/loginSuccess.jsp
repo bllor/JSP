@@ -2,6 +2,10 @@
 <%
 	String sessid =(String)session.getAttribute("sessid");
 	//getAttribute return타입이 object인데, object는 아무거나 다운 캐스팅이 되므로, string으로 양변다 다운 캐스팅해준다.
+	
+	
+	
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -17,5 +21,17 @@
 			<a href="./logout.jsp">로그아웃</a>
 		
 		</p>
+		
+		<%
+		Cookie[] conf =request.getCookies();
+		for(Cookie co : conf){
+		%>
+			<p>
+			쿠키명 : <%= co.getName() %>
+			쿠키값 : <%= co.getValue() %>
+			</p>
+		<%
+		}
+		%>
 	</body>
 </html>
