@@ -1,25 +1,25 @@
-<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="vo.User1VO"  %>
+<%@ page import="vo.User2VO" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 
-	String uid = request.getParameter("uid");
-
+	String uid =request.getParameter("uid");
+	
 	String host ="jdbc:mysql://127.0.0.1:3306/userdb";
-	String user ="root";
-	String pass ="1234";
-
-	User1VO vo =new User1VO();	
+	String user = "root";
+	String pass = "1234";
+	
+	User2VO vo = new User2VO();
+	
 	try{
 		
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conn = DriverManager.getConnection(host,user,pass);
-		
-		PreparedStatement psmt = conn.prepareStatement("select*from `user1` where uid = ?");
+		PreparedStatement psmt = conn.prepareStatement("select * from `user2` where uid=?");
 		psmt.setString(1, uid);
 		ResultSet rs = psmt.executeQuery();
 		
@@ -34,48 +34,46 @@
 		rs.close();
 		psmt.close();
 		conn.close();
+		
 	}catch(Exception e){
 		e.printStackTrace();
+		
 	}
 
-
 %>
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>user1 modify</title>
+		<title>Insert title here</title>
 	</head>
 	<body>
-		
-		<h3>User1 수정</h3>
+		<h3>User2 수정</h3>
 		<a href ="/Ch06/1_JDBC실습.jsp">처음으로</a>
-		<a href ="/Ch06/user1/list.jsp">User1목록</a>	
+		<a href ="/Ch06/user2/list.jsp">User2목록</a>
 		
-		<form action="/Ch06/user1/modifyProc.jsp" method="post">	
-			<table>
-				 
+		<form action="/Ch06/user2/modifyProc.jsp" method ="post">
+			<table border="1">
 				<tr>
 					<td>아이디</td>
-					<td><input type ="text" name = "uid" readonly="readonly" value= "<%= vo.getUid()%>"></td>
+					<td><input type ="text" name="uid" readonly="readonly" value="<%=vo.getUid()%>"></td>
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td><input type ="text" name = "name" value= "<%= vo.getName() %>"></td>
+					<td><input type ="text" name="name" value="<%=vo.getName()%>"></td>
 				</tr>
 				<tr>
 					<td>휴대폰</td>
-					<td><input type ="text" name = "hp" value= "<%= vo.getHp()%>"></td>
+					<td><input type ="text" name="hp"  value="<%=vo.getHp()%>"></td>
 				</tr>
 				<tr>
 					<td>나이</td>
-					<td><input type ="number" name = "age" value= "<%= vo.getAge() %>"></td>
+					<td><input type ="text" name="age"  value="<%=vo.getAge()%>"></td>
 				</tr>
-				 
 				<tr>
-					<td colspan="2" align="right"><input type="submit" value="수정"></td>
+					<td colspan ="2" align ="right"><input type ="submit" value ="수정"></td>
 				</tr>
-			
 			</table>
 		</form>
 		
