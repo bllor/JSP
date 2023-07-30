@@ -53,12 +53,14 @@
 		<h3>User4 수정</h3>
 		<a href ="/Ch06/1_JDBC실습.jsp">처음으로</a>
 		<a href ="/Ch06/user4/list.jsp">User4목록</a>
-		<form action="/Ch06/user4/modifyProc.jsp?seq=<%= vo.getSeq()%>">
+		<form action="/Ch06/user4/modifyProc.jsp">
 			<table border="1">
-				
 				<tr>
 					<td>이름</td>
-					<td><input type ="text" name ="name"  value=<%=vo.getName()%>></td>
+					<td>
+					<input type="hidden" name ="seq" value="<%=vo.getSeq()%>">				
+					<input type ="text" name ="name"  value=<%=vo.getName()%>>
+					</td>
 				</tr>
 				<tr>
 					<td>성별</td>
