@@ -67,7 +67,12 @@
 			<tr>
 				<td><%= vo.getSeq() %></td>
 				<td><%= vo.getName() %></td>
-				<td><%= vo.getGender()%></td>
+				<td><% if(vo.getGender().equals("1")){%>
+					남자
+					<%}else{ %>
+					여자
+				<%} %>
+				</td>
 				<td><%= vo.getAge()%></td>
 				<td><%= vo.getAddr()%></td>
 				<td>
