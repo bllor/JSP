@@ -49,7 +49,7 @@
 		<a href ="/Ch06/1_JDBC실습.jsp">처음으로</a>
 		<a href ="/Ch06/user5/list.jsp">목록으로</a>
 		
-		<form action="/Ch06/user5/Procmodify.jsp">
+		<form action="/Ch06/user5/modifyProc.jsp">
 			<table border="1">
 				<tr>
 					<td>아이디</td>
