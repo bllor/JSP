@@ -7,7 +7,7 @@ public class MemberVO {
 	private String hp;
 	private String pos;
 	private String dep;
-	private String date;
+	
 	
 	public String getUid() {
 		return uid;
@@ -39,12 +39,7 @@ public class MemberVO {
 	public void setDep(String dep) {
 		this.dep = dep;
 	}
-	public String getDate() {
-		return date;
-	}
-	public void setDate(String date) {
-		this.date = date;
-	}
+	
 
 	
 }

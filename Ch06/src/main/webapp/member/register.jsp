@@ -25,27 +25,30 @@
 					<td><input type="text" name="hp" ></td>
 				</tr>
 				<tr>
-					<td>직책</td>
+					<td>직급</td>
 					<td>
 					<select name="pos">
-						<option selected>직책
-						<option value="부장">부장
-						<option value="차장">차장
+						<option value="사원" selected="selected">사원
 						<option value="대리">대리
-						<option value="사원">사원
+						<option value="차장">차장
+						<option value="부장">부장
 					</select>
 					</td>
 				</tr>
 				<tr>
-					<td>부서번호</td>
-					<td><input type="text" name="dep" ></td>
+					<td>부서</td>
+					<td>
+						<select name ="dep">
+							<option value="101" selected="selected">영업1부
+							<option value="102">영업2부
+							<option value="103">영업3부
+							<option value="107">인사부
+							<option value="106">경영지원부
+						</select>
+					</td>
 				</tr>
 				<tr>
-					<td>날짜</td>
-					<td><input type="datetime-local" name="date" ></td>
-				</tr>
-				<tr >
-				<td colspan="2" align="right"><input type="submit" value="전송"></td>
+				<td colspan="2" align="right"><input type="submit" value="등록"></td>
 				</tr>
 			</table>
 		</form>

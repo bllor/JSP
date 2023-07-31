@@ -12,7 +12,7 @@
 	String hp= request.getParameter("hp");
 	String pos= request.getParameter("pos");
 	String dep= request.getParameter("dep");
-	String date= request.getParameter("date");
+	
 	
 	String host ="jdbc:mysql://127.0.0.1:3306/userdb";
 	String user ="root";
@@ -24,13 +24,12 @@
 		
 		
 	 	
-		PreparedStatement psmt = conn.prepareStatement("insert into `member` values (?,?,?,?,?,?)");
+		PreparedStatement psmt = conn.prepareStatement("insert into `member` values uid=?, name=?, hp=?, pos=?, dep=?");
 		psmt.setString(1, uid);
 		psmt.setString(2, name);
 		psmt.setString(3, hp);
 		psmt.setString(4, pos);
 		psmt.setString(5, dep);
-		psmt.setString(6, date);
 		psmt.executeUpdate();
 		
 		psmt.close();
