@@ -1,3 +1,7 @@
+<%@page import="javax.sql.DataSource"%>
+<%@page import="org.apache.catalina.startup.ContextConfig.ContextXml"%>
+<%@page import="javax.naming.InitialContext"%>
+<%@page import="javax.naming.Context"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="java.sql.ResultSet"%>
@@ -25,8 +29,12 @@
 	String pass = "1234";
 	
 	try{
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection conn = DriverManager.getConnection(host,user,pass);
+		Context initctx = new InitialContext();
+		Context ctx = (Context)initctx.lookup("java:comp/env");
+		DataSource ds = (DataSource) ctx.lookup("jdbc/userdb");
+		Connection conn = ds.getConnection();
+		
+		
 		Statement stmt = conn.createStatement();
 		ResultSet rs = stmt.executeQuery("select * from `user2`");
 		

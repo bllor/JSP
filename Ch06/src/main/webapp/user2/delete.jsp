@@ -1,3 +1,6 @@
+<%@page import="javax.sql.DataSource"%>
+<%@page import="javax.naming.InitialContext"%>
+<%@page import="javax.naming.Context"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
@@ -12,8 +15,12 @@
 	
 	try{
 		
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection conn = DriverManager.getConnection(host,user,pass);
+		Context initctx = new InitialContext();
+		Context ctx = (Context) initctx.lookup("java:comp/env");
+		DataSource ds = (DataSource) ctx.lookup("userdb");
+		Connection conn = ds.getConnection();
+		
+		
 		PreparedStatement psmt = conn.prepareStatement("delete from `user2` where `uid` =?");
 		psmt.setString(1, uid);
 		psmt.executeUpdate();

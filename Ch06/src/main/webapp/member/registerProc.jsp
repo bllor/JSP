@@ -1,3 +1,6 @@
+<%@page import="javax.sql.DataSource"%>
+<%@page import="javax.naming.Context"%>
+<%@page import="javax.naming.InitialContext"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
@@ -18,6 +21,9 @@
 	try{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conn = DriverManager.getConnection(host,user,pass);
+		
+		
+	 	
 		PreparedStatement psmt = conn.prepareStatement("insert into `member` values (?,?,?,?,?,?)");
 		psmt.setString(1, uid);
 		psmt.setString(2, name);

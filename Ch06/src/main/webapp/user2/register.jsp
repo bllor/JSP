@@ -6,6 +6,9 @@
 		<title>User2 등록</title>
 	</head>
 	<body>
+		<h3>User2 등록</h3>
+		<a href ="/Ch06/1_JDBC실습.jsp">처음으로</a>
+		<a href ="/Ch06/user2/list.jsp">User2목록</a>
 		<form action="/Ch06/user2/registerProc.jsp" method ="post">
 			<table border ="1">
 				<tr>
