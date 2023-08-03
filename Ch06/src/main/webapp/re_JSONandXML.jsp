@@ -16,7 +16,7 @@
 <%-- <%@ page contentType="apllication/Json;charset=UTF-8" pageEncoding="UTF-8"%> --%>
 
 <%-- <% --%>
-
+<%--
 // 	//json
 // 	String data = "{\"uid\":\"a101\",\"name\":\"홍길동\",\"age\":\"나이\",\"주소\":\"부산\"}";
 // 	out.print(data);
@@ -129,7 +129,6 @@
 // 	String xml = outputter.outputString(doc);
 // 	out.print(xml);
 			
+--%>	
 	
 	
-	
-<%-- %> --%>
