@@ -12,110 +12,96 @@
     -->
    <link rel="stylesheet" href="../css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="/Jboard1/js/checkUser.js"></script>
+	<script src="/Jboard1/js/zipcode.js"></script>
 	<script>
-	$(function(){
-		//아이디 중복체크
-		$('#btnCheckUid').click(function(){
-			const uid = $('input[name=uid]').val();
-			const jsonData ={
-					"uid":uid
-			};
 			
-			$.ajax({
-				url:'/Jboard1/user/checkUid.jsp',
-				type:'GET',
-				data:jsonData,
-				dataType:'json',
-				success:function(data){
+		//폼 데이터 검증 결과 상태변수
+		let isUidOk		= false;
+		let isPassOk 	= false;
+		let isNameOk 	= false;
+		let isNickOk	= false;
+		let isEmailOk 	= false;
+		let isHpOk 		= false;
+	
+		//유효성 검증(vaildation)
+		$(function(){
+			//아이디검사
+			
+			
+			
+			//비밀번호검사			
+			
+			
+			
+			//이름검사			
+			
+			
+			
+			//별명검사			
+			
+			
+			
+			
+			//이메일검사			
+			
+			
+			
+			
+			//휴대폰검사			
+			
+			
+			
+			
+			//최종전송
+			//서버로 바로 제출되는 것을 막아야함 -> 유효성을 검증해야 하므로
+			$('#formUser').submit(function(){
+				//return false;이렇게 해놓으면 preventDefault할 때 처럼 전송이 되지 않는다. 
+				//return true일 경우 폼 전송 시작
+				
+				if(!isUidOk){
+				
+				return false;
+				}
+				if(!isPassOk){
 					
-					if(data.result>=1){
-						$('.resultId').css('color','red').text('이미 사용중인 아이디 입니다.');
-					}else{
-						$('.resultId').css('color','green').text('사용 가능한 아이디 입니다.');
+					return false;
 					}
+				if(!isNameOk){
 					
-				}
-			});
-				
-		});//아이디 중복체크 끝
-		
-		//닉네임 중복 체크
-		$('input[name=nick]').focusout(function(){
-			
-			const nick = $(this).val();
-			//console.log ('nick: '+nick);
-			
-			const jsonData ={
-					"nick": nick
-			};
-			
-			/*
-			ajax를 사용해도 되지만 get을 사용해도 된다.
-			$.ajax({
-				//url:'./checkNick.jsp?=nick'=nick;json을 생성하지 않고 이렇게 처리를 해도된다.
-				url:'./checkNick.jsp',
-				type: 'GET',
-				data: 
-			
-			});*/
-			
-			
-			//데이터 전송
-			$.get('/Jboard1/user/checkNick.jsp', jsonData, function(data){
-				//get방식으로 사용했으므로 주소 뒤에 nick=입력한 별명 으로 보내짐
-				console.log(data);
-				if(data.result >=1){
-					$('.resultNick').css('color','red').text('이미 사용중인 닉네임 입니다.');
-				}else{
-					$('.resultNick').css('color','green').text('사용 가능한 닉네임 입니다.');
-				}
-				
-			});
-			
-			
-		});//닉네임 중복체크 끝
-		
-		//이메일 중복체크
-		const email = document.getElementsByName('email')[0];
-		email.onfocusout = function(){
-			
-			//입력데이터 가져오기
-			const email = this.value;
-			console.log("email:"+email);
-			
-			
-			const xhr = new XMLHttpRequest();
-			xhr.open('GET','/Jboard1/user/checkEmail.jsp?email='+email);
-			xhr.send();
-			
-			xhr.onreadystatechange = function(){
-				
-				if(xhr.readyState == XMLHttpRequest.DONE){
-					if(xhr.status == 200){
-						const data = JSON.parse(xhr.response);
-						console.log('data : '+ data );
-						const resultEmail = document.getElementById('resultEmail');
-						if(data.result>=1){
-							//$('#resultEmail').css('color','red').text('이미 사용 중인 이메일입니다.');
-							resultEmail.innerText = '이미 사용 중인 이메일입니다.';
-							resultEmail.style.color='red';
-						}else{
-							//$('#resultemail').css('color','green').text('사용 가능한 이메일 입니다.');
-							resultEmail.innerText = '사용가능한 이메일입니다.';
-							resultEmail.style.color='green';
-						}
-						
+					return false;
 					}
-				}
+				if(!isNickOk){
+					
+					return false;
+					}
+				if(!isEmailOk){
+					
+					return false;
+					}
+				if(!isHpOk){
+					
+					return false;
+					}
 				
-			}//onreadystatechange end
+				return true;//모든 if를 다 통과해야지 true가 된다.
+				
+				
+			});
 			
-		}//onfocus end
-		
-		
-	});	
+			
+			//유효성 검증 끝 
+		});
+	
+	
+	
+	
 	</script>
-
+	
+	
+	
+	
 </head>
 <body>
     <div id = "container">
@@ -124,7 +110,7 @@
         </header>
         <main>
           <section id="user" class="register">
-            <form action="/Jboard1/user/registerProc.jsp" method="post">
+            <form  id ="formUser" action="/Jboard1/user/registerProc.jsp" method="post">
                 <table border="1">
                     <caption>사이트 이용정보 입력</caption>
                     <tbody>
@@ -180,7 +166,7 @@
                             <td>휴대폰</td>
                             <td>
  								<input type="text" name="hp" placeholder="- 포함 13자리 입력" minlength="13" maxlength="13"/>                           
-                                <span class="resultHp"></span>
+                                <span id="resultHp"></span>
                                 <%--<input type="text" name="hp" placeholder="-포함 13자리 입력" minlength="13" maxlength="13"/> --%>
                             </td>
                         </tr> 
@@ -188,8 +174,9 @@
                             <td>주소</td>
                             <td>
                                 <div>
-                                    <input type="text" name="zip" placeholder="우편번호" readonly/>    
-                                    <button class="btnZip"><img src="../images/chk_post.gif" alt=""></button>
+                                    <input type="text" name="zip" placeholder="우편번호" readonly/>
+                                    <!-- type button을 할경우 제출되지 않음 -->    
+                                    <button type = "button" class="btnZip" onclick ="zipcode()"><img src="../images/chk_post.gif" alt=""></button>
                                 </div>
                                 <div>
                                     <input type="text" name="addr1" placeholder="주소를 검색하시오." readonly/>
