@@ -1,3 +1,4 @@
+<%@page import="kr.co.jboard1.dao.UserDAO"%>
 <%@page import="com.google.gson.JsonObject"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -11,33 +12,7 @@
 
 	String email = request.getParameter("email");
 	
-	int result = 0;
-	
-	try{
-		
-		Context initctx = new InitialContext();
-		Context ctx = (Context)initctx.lookup("java:comp/env");
-		DataSource ds = (DataSource)ctx.lookup("jdbc/Jboard");
-		
-		Connection conn = ds.getConnection();
-		PreparedStatement psmt = conn.prepareStatement("select count(*) from `user` where `email`=?");
-		psmt.setString(1, email);
-		
-		ResultSet rs = psmt.executeQuery();
-		
-		if(rs.next()){
-			result = rs.getInt(1);
-		}
-		
-		rs.close();
-		psmt.close();
-		conn.close();
-		
-		
-	}catch(Exception e){
-		e.printStackTrace();
-		
-	}
+	int result = UserDAO.getInstace().selectCountEmail(email);
 	
 	
 	JsonObject json = new JsonObject();
