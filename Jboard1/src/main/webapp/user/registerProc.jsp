@@ -25,10 +25,11 @@
 	DataSource ds = (DataSource) ctx.lookup("jdbc/Jboard");
 	
 	Connection conn = ds.getConnection();
-	String sql ="insert into `user` set uid=?, pass=?, name=?,";
+	String sql ="insert into `user` set uid=?, pass=SHA2(?,256), name=?,";
 			sql+="nick=?, email=?, hp=?, zip=?, addr1=?, addr2=?, regip=?, regdate=NOW()";
-	//String sql = "INSERT INTO `User` SET `uid`=?, `pass`=?, `name`=?,";
-	//	   sql += "`nick`=?, `email`=?, `hp`=?, `zip`=?, `addr1`=?, `addr2`=?, `regip`=?, `regDate`=NOW()";
+			//pass=SHA(비밀번호,256);
+			//비밀번호를 가릴 때 사용하는 것으로 비밀번호에 1234를 넣으면 256자리의 다른 글자로 만들어주어서 보안성을 높여준다.
+	
 	PreparedStatement psmt = conn.prepareStatement(sql);
 	psmt.setString(1, uid);
 	psmt.setString(2, pass1);
