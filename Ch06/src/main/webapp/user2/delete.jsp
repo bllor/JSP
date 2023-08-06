@@ -9,15 +9,13 @@
 
 	String uid = request.getParameter("uid");
 	
-	String host = "jdbc:mysql://127.0.0.1:3306/userdb";
-	String user = "root";
-	String pass = "1234";
+	
 	
 	try{
 		
 		Context initctx = new InitialContext();
 		Context ctx = (Context) initctx.lookup("java:comp/env");
-		DataSource ds = (DataSource) ctx.lookup("userdb");
+		DataSource ds = (DataSource) ctx.lookup("jdbc/userdb");
 		Connection conn = ds.getConnection();
 		
 		

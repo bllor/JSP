@@ -12,9 +12,6 @@
 
 	String uid =request.getParameter("uid");
 	
-	String host ="jdbc:mysql://127.0.0.1:3306/userdb";
-	String user = "root";
-	String pass = "1234";
 	
 	User2VO vo = new User2VO();
 	
