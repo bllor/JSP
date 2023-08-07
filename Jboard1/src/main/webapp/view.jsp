@@ -1,28 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>글보기</title>
-    <!--
-        날짜:2023/08/01
-        이름:최동일
-        내용:게시판 프로젝트1
-    -->
-   <link rel="stylesheet" href="./css/style.css">
-
-
-</head>
-<body>
-    <div id = "container">
-        <header>
-            <h3>Board System v1.0</h3>
-            <p>
-                OOO님 반갑습니다.
-                <a href="#" class="logout">[로그아웃]</a>
-            </p>
-        </header>
+<%@ include file="./_header.jsp" %>
         <main>
             <section class="view">
                 <h3>글보기</h3>
@@ -82,9 +59,4 @@
                 </section>
             </section>
         </main>
-        <footer>
-            <p>ⓒCopyleft by 최동일.com</p>
-        </footer>
-    </div>
-</body>
-</html>
+<%@ include file ="./_footer.jsp" %>
