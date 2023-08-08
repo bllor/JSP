@@ -1,18 +1,17 @@
-<%@page import="kr.co.jboard1.vo.UserVO"%>
+<%@page import="kr.co.jboard1.dto.UserDTO"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	request.setCharacterEncoding("UTF-8");
+request.setCharacterEncoding("UTF-8");
 	String success = request.getParameter("success");
 	
 	//현재 사용자 로그인 여부 확인
 	
-	UserVO sessUser = (UserVO) session.getAttribute("sessUser");
+	UserDTO sessUser = (UserDTO) session.getAttribute("sessUser");
 	
 	if(sessUser != null){
 		response.sendRedirect("/Jboard1/list.jsp");
 		return;
 	}
-
 %>
 
 <!DOCTYPE html>
@@ -52,7 +51,7 @@
           
             <section class="login">
                 <form action="/Jboard1/user/loginProc.jsp" method = "post">
-                    <table border="0">
+                    <table>
                         <tr>
                             <td><img src="/Jboard1/images/login_ico_id.png" alt="아이디"></td>
                             <td><input type="text" name="uid" placeholder="아이디 입력"></td>

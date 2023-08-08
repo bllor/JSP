@@ -1,12 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./_header.jsp" %>
+
         <main>
             <section class="view">
                 <h3>글보기</h3>
                 <table>
                     <tr>
                         <td>제목</td>
-                        <td><input type="text" name="title" value="제목입니다", readonly></td>
+                        <td><input type="text" name="title" value="제목입니다" readonly></td>
                     </tr>
                     <tr>
                         <td>첨부파일</td>

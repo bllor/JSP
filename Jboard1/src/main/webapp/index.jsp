@@ -1,10 +1,10 @@
-<%@page import="kr.co.jboard1.vo.UserVO"%>
+<%@page import="kr.co.jboard1.dto.UserDTO"%>
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 //로그인을 했을 경우, 로그인 페이지로 가지 않고, 글목록 페이지로 갈 수 있게 처리를 해줌
 
 	//현재 로그인 여부 확인
-	UserVO sessUser = (UserVO)session.getAttribute("sessUser");
+	UserDTO sessUser = (UserDTO)session.getAttribute("sessUser");
 
 	if(sessUser==null){
 		
@@ -15,7 +15,4 @@
 		pageContext.forward("./list.jsp");
 		
 	}
-
-
-
 %>		

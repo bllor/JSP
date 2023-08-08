@@ -37,7 +37,12 @@ public class sql {
 												+" `regip`=?,"
 												+" `rdate`=NOW()";
 	
-	public static final String SELETE_ARTICELS ="SELECT a.*, b.`nick` from `article` as a join user as b on a.writer = b. uid order by `no` desc";
+	public static final String SELETE_ARTICELS ="SELECT a.*, b.`nick` from `article` as a "
+												+ "join user as b on a.writer = b. uid "
+												+ "order by `no` desc "
+												+" Limit ?, 10";
+	
+	public static final String SELECTE_COUNT_TOTAL="SELECT COUNT(*)FROM `ARTICLE`";
 	//최신 글이 상단에 출력하기 위해서 order by를 추가하고,
 	//아이디를 닉네임으로 바꾸기 위해서 user를 조인하여 아이디를 가져온다.
 

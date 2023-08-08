@@ -1,4 +1,4 @@
-<%@page import="kr.co.jboard1.vo.TermsVO"%>
+<%@page import="kr.co.jboard1.dto.TermsDTO"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="org.apache.catalina.ant.StartTask"%>
@@ -14,9 +14,9 @@
 
 //연결
 
-	TermsVO vo = new TermsVO();
+	TermsDTO vo = new TermsDTO();
 	try{
-			
+	
 		Context initctx = new InitialContext();
 		Context ctx = (Context) initctx.lookup("java:comp/env");
 		DataSource ds = (DataSource) ctx.lookup("jdbc/Jboard");
@@ -26,9 +26,9 @@
 		ResultSet rs = stmt.executeQuery("select * from `Terms`");
 		
 		if(rs.next()){
-			vo.setTerms(rs.getString(1));
-			vo.setPrivacy(rs.getString(2));
-			
+	vo.setTerms(rs.getString(1));
+	vo.setPrivacy(rs.getString(2));
+	
 		}
 		
 		rs.close();
@@ -37,7 +37,6 @@
 	}catch(Exception e){
 		e.printStackTrace();
 	}
-	
 %>
 <script>
 $(function(){

@@ -1,4 +1,4 @@
-<%@page import="kr.co.jboard1.vo.TermsVO"%>
+<%@page import="kr.co.jboard1.dto.TermsDTO"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
@@ -6,9 +6,8 @@
 <%@page import="javax.naming.InitialContext"%>
 <%@page import="javax.naming.Context"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<% 
-
-	TermsVO vo = new TermsVO();
+<%
+TermsDTO dto = new TermsDTO();
 try{
 		Context initCtx = new InitialContext();
 		Context ctx = (Context) initCtx.lookup("java:comp/env");
@@ -19,8 +18,8 @@ try{
 		ResultSet rs = stmt.executeQuery("SELECT * FROM `Terms`");
 		
 		if(rs.next()){
-			vo.setTerms(rs.getString(1));
-			vo.setPrivacy(rs.getString(2));
+			dto.setTerms(rs.getString(1));
+			dto.setPrivacy(rs.getString(2));
 		}
 		
 		rs.close();
@@ -85,7 +84,7 @@ try{
                         <tbody>
                             <tr>
                                 <td>
-                                    <textarea readonly><%=vo.getTerms() %></textarea>
+                                    <textarea readonly><%=dto.getTerms() %></textarea>
                                     <p>
                                         <label>
                                             <input type="checkbox" name="chk1">동의합니다.
@@ -100,7 +99,7 @@ try{
                         <tbody>
                             <tr>
                                 <td>
-                                    <textarea readonly><%= vo.getPrivacy() %></textarea>
+                                    <textarea readonly><%= dto.getPrivacy() %></textarea>
                                     <p>
                                         <label>
                                             <input type="checkbox" name="chk2">동의합니다.
