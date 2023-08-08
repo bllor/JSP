@@ -41,6 +41,7 @@ public class sql {
 												+ "join user as b on a.writer = b. uid "
 												+ "order by `no` desc "
 												+" Limit ?, 10";
+	// limit ?,10을하므로써 ?부터10개를 view에 가지고 올 수 있다.
 	
 	public static final String SELECTE_COUNT_TOTAL="SELECT COUNT(*)FROM `ARTICLE`";
 	//최신 글이 상단에 출력하기 위해서 order by를 추가하고,

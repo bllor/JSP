@@ -25,7 +25,10 @@ request.setCharacterEncoding("UTF-8");
 	//현재 페이지 계산
 	//total을 가지고 마지막 페이지 번호를 알아낼 것.
 	if(pg != null){
+		//pg는 밑에서 다음 페이지를 누를 때 날라옴
+		//처음 list.jsp파일이 뜰 때는 0 ->currentPage=0;
 		currentPage = Integer.parseInt(pg);
+		//pg는 String 이기때문에 Integer.parseInt로 변경
 	}
 	
 	//Limit 시작값 계산
@@ -89,6 +92,7 @@ request.setCharacterEncoding("UTF-8");
                     </table>
                 </article>
                 <div class="paging">
+                	<!-- 
                 	<%if(pageGroupStart>1){ %>
                     <a href="/Jboard1/list.jsp?pg=<%=pageGroupStart-1 %>" class="prev">이전</a>
                     <%} %>
@@ -99,6 +103,7 @@ request.setCharacterEncoding("UTF-8");
                     <%if(pageGroupEnd<lastPageNum){ %>
                     <a href="/Jboard1/list.jsp?pg=<%= pageGroupEnd + 1 %>" class="next">다음</a>
                 	<%} %>
+                	 -->
                 </div>
                 <a href="/Jboard1/write.jsp" class="btnWrite">글쓰기</a>
             </section>
