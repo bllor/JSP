@@ -13,6 +13,10 @@ public class ArticleVO {
 	private String writer;
 	private String regip;
 	private String rdate;
+	
+	//추가필드
+	private String nick;
+	
 	public int getNo() {
 		return no;
 	}
@@ -83,5 +87,12 @@ public class ArticleVO {
 	}
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+	
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
 	}
 }
