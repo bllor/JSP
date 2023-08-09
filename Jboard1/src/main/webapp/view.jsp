@@ -43,7 +43,7 @@
                         <td>제목</td>
                         <td><input type="text" name="title" value=<%=dto.getTitle() %> readonly></td>
                     </tr>
-                    <%if(dto.getFile()>=1){ %>
+                    <%if(dto.getFile()>0){ %>
                     
                     <tr>
                         <td>첨부파일</td>
@@ -79,11 +79,11 @@
                         
                         <%if(sessUser.getUid().equals(comment.getWriter())){ %>
                         <div>
-                            <a href="/Jboard1/proc/commentDelete.jsp?no=<%=comment.getNo()%>" class= "del">삭제</a>
+                            <a href="/Jboard1/proc/commentDelete.jsp?no=<%=comment.getNo()%>&parent=<%=comment.getParent() %>" class= "del">삭제</a>
                             <a href="#" class= "mod">수정</a>
                         </div>
+                        <%} %>
                     </article>
-               			<%} %>
                		<%} %>
                     <%if(comments.isEmpty()) {//comment.size()로 해도됨.%>
                     <p class="empty">

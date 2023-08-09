@@ -117,7 +117,7 @@ public class ArticleDAO extends DBHelper{
 				total=rs.getInt(1);
 			}
 			
-			
+			close();
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -157,6 +157,9 @@ public class ArticleDAO extends DBHelper{
 				
 				comments.add(dto);
 			}
+			
+			close();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -196,12 +199,12 @@ public class ArticleDAO extends DBHelper{
 		}
 	}
 	
-	public void updateArticleForComment(String no) {
+	public void updateArticleForCommentPlus(String no) {
 			
 		try {
 			
 			conn = getConnection();
-			psmt = conn.prepareStatement(sql.UPDATE_ARTICLE_FOR_COMMENT);
+			psmt = conn.prepareStatement(sql.UPDATE_ARTICLE_FOR_COMMENT_PLUS);
 			psmt.setString(1, no);
 			psmt.executeUpdate();
 			close();
@@ -209,4 +212,43 @@ public class ArticleDAO extends DBHelper{
 			e.printStackTrace();
 		}
 	}
+	
+	public void updateArticleForCommentMinus(String no) {
+		
+		try {
+			
+			conn = getConnection();
+			psmt = conn.prepareStatement(sql.UPDATE_ARTICLE_FOR_COMMENT_MINUS);
+			psmt.setString(1, no);
+			psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void deleteComment(String no) {
+		
+		try {
+			
+			conn = getConnection();
+			psmt = conn.prepareStatement(sql.DELETE_COMMENT);
+			psmt.setString(1, no);
+			psmt.executeUpdate();
+			close();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 }

@@ -1,3 +1,4 @@
+<%@page import="kr.co.jboard1.dao.ArticleDAO"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="javax.sql.DataSource"%>
@@ -10,27 +11,17 @@
 	
 
 	String no = request.getParameter("no");
+	String parent = request.getParameter("parent");
 	
-	try{
-		
-		Context ctx = (Context)new InitialContext().lookup("java:comp/env");
-		DataSource ds = (DataSource)ctx.lookup("jdbc/Jboard");
-		
-		Connection conn = ds.getConnection();
-		PreparedStatement psmt = conn.prepareStatement("delete from `Article` where no=?");
-		psmt.setString(1, no);
-		psmt.executeUpdate();
-		
-		psmt.close();
-		conn.close();
-		
-	}catch(Exception e){
-		e.printStackTrace();
-		
-	}
-
+	
+	ArticleDAO dao = new ArticleDAO();
+	
+	//댓글 삭제
+	dao.deleteComment(no);
 	
 
+	//댓글 카운트 수정 Minus
+	dao.updateArticleForCommentMinus(parent);
 
-response.sendRedirect("/Jboard1/view.jsp?no="+no);
+response.sendRedirect("/Jboard1/view.jsp?no="+parent);
 %>

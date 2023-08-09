@@ -63,7 +63,12 @@ public class sql {
 												+" `rdate`=NOW()";
 	
 	
-	public static final String UPDATE_ARTICLE_FOR_COMMENT="UPDATE `Article` set `comment`=`comment`+1 where `no`=?";
+	public static final String UPDATE_ARTICLE_FOR_COMMENT_PLUS="UPDATE `Article` set `comment`=`comment`+1 where `no`=?";
+	
+	public static final String UPDATE_ARTICLE_FOR_COMMENT_MINUS="UPDATE `Article` set `comment`=`comment`-1 where `no`=?";
+	
+	public final static String DELETE_COMMENT ="DELETE FROM `Article` where `no`=?";
+	
 	
 	public static final String SELECTE_COMMENTS ="SELECT a.*, b.`nick` from `article` as a "
 												+ "join user as b on a.writer = b. uid "
