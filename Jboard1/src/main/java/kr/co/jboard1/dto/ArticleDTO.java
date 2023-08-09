@@ -29,6 +29,11 @@ public class ArticleDTO {
 	public void setParent(int parent) {
 		this.parent = parent;
 	}
+	
+	//오버로드 숫자로 문자로 들어오는 parent를 변환해서 int로 저장.
+	public void setParent(String parent) {
+		this.parent = Integer.parseInt(parent);
+	}
 	public String getCate() {
 		return cate;
 	}

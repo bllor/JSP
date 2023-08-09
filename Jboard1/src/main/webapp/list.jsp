@@ -82,7 +82,7 @@ request.setCharacterEncoding("UTF-8");
                                 %>
                                 <tr>
                                    <td><%= pageStartNum--%></td> 
-                                   <td><a href=#><%=article.getTitle() %></a>&nbsp;[<%=article.getComment() %>]</td> 
+                                   <td><a href="/Jboard1/view.jsp?no=<%=article.getNo() %>"><%=article.getTitle() %></a>&nbsp;[<%=article.getComment() %>]</td> 
                                    <td><%= article.getNick()%></td> 
                                    <td><%= article.getRdate() %></td> 
                                    <td><%= article.getHit() %></td> 
@@ -92,7 +92,7 @@ request.setCharacterEncoding("UTF-8");
                     </table>
                 </article>
                 <div class="paging">
-                	<!-- 
+                	
                 	<%if(pageGroupStart>1){ %>
                     <a href="/Jboard1/list.jsp?pg=<%=pageGroupStart-1 %>" class="prev">이전</a>
                     <%} %>
@@ -103,7 +103,7 @@ request.setCharacterEncoding("UTF-8");
                     <%if(pageGroupEnd<lastPageNum){ %>
                     <a href="/Jboard1/list.jsp?pg=<%= pageGroupEnd + 1 %>" class="next">다음</a>
                 	<%} %>
-                	 -->
+                	 
                 </div>
                 <a href="/Jboard1/write.jsp" class="btnWrite">글쓰기</a>
             </section>
