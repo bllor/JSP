@@ -54,6 +54,10 @@ public class sql {
 	
 	public static final String SELECTE_ARTICLE ="SELECT* FROM `article` WHERE NO=?";
 
+	public final static String UPDATE_ARTICLE="UPDATE `Article` set title=?, content=?, regip=? where `no`=?";
+	
+	public final static String DELETE_ARTICLE= "DELETE FROM `Article` where no=? or parent=?";
+	
 	
 	public static final String INSERT_COMMENT= "insert into `article` set "//"INSERT INTO `article` set "
 												+" `parent`=?, "//어떤 글의 댓글인지 알기 위해서 사용. 글번호를 parent에 넣음으로써 확인함.
@@ -73,6 +77,8 @@ public class sql {
 	public static final String SELECTE_COMMENTS ="SELECT a.*, b.`nick` from `article` as a "
 												+ "join user as b on a.writer = b. uid "
 												+ "where `parent`=?";
+	
+	public final static String UPDATE_CONTENT="UPDATE `Article` set content=? where no=?";
 	
 	
 }

@@ -18,7 +18,7 @@
 	dto.setWriter(writer);
 	dto.setRegip(request.getRemoteAddr());
 	
-	//댓글 입력
+	//댓글 입력6
 	dao.insertComment(dto);
 	
 	//댓글 카운트 수정

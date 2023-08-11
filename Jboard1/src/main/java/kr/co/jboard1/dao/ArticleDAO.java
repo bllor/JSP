@@ -9,6 +9,12 @@ import kr.co.jboard1.dto.ArticleDTO;
 
 public class ArticleDAO extends DBHelper{
 
+	
+	
+///////////////////////////////////
+///////////Article
+//////////////////////////////////
+	
 	public void insertArticle(ArticleDTO dto) {
 		
 		try{
@@ -103,7 +109,50 @@ public class ArticleDAO extends DBHelper{
 		return articles;
 		
 	}
+
 	
+public void updateArticle(ArticleDTO dto) {
+		
+		
+		try {
+			
+			conn= getConnection();
+			psmt= conn.prepareStatement(sql.UPDATE_ARTICLE);
+			psmt.setString(1, dto.getTitle());
+			psmt.setString(2, dto.getContent());
+			psmt.setString(3, dto.getRegip());
+			psmt.setInt(4, dto.getNo());
+			psmt.executeUpdate();
+			
+			close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+		}
+	}
+	
+	public void deleteArticle(String no) {
+		
+		try {
+			
+			conn = getConnection();
+			psmt = conn.prepareStatement(sql.DELETE_ARTICLE);
+			psmt.setString(1, no);
+			psmt.setString(2, no);
+			psmt.executeUpdate();
+			close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+///////////////////////////////////
+///////////comment
+//////////////////////////////////
 	public int selectCountTotal() {
 		int total =0;
 		
@@ -167,13 +216,6 @@ public class ArticleDAO extends DBHelper{
 		return comments;
 	}
 	
-	public void updateArticle(ArticleDTO vo) {
-		
-	}
-	
-	public void deleteArticle(int no) {
-		
-	}
 	
 	
 	//추가
@@ -245,7 +287,24 @@ public class ArticleDAO extends DBHelper{
 		
 	}
 	
-	
+public void updateComment(ArticleDTO dto) {
+		
+		
+		try {
+			
+			conn= getConnection();
+			psmt= conn.prepareStatement(sql.UPDATE_CONTENT);
+			psmt.setString(1, dto.getContent());
+			psmt.setInt(2, dto.getNo());
+			psmt.executeUpdate();
+			
+			close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+		}
+	}
 	
 	
 	
