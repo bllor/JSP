@@ -100,18 +100,19 @@ public class UserDAO extends DBhelper{
 		
 	}
 	
-	/*
-	public UserDTO selectCount(UserDTO dto) {
-		UserDTO user = null;
+	
+	public int selectCount(UserDTO dto) {
+		int result = 0;
+		UserDTO user = dto;
 		
 		if(user.getUid()!=null) {
-			
+			String uid = user.getUid();
 		}
 		
 		
-		return user;
+		return result;
 	}
-	*/
+	
 	
 	
 }
