@@ -1,47 +1,23 @@
 package kr.Farmstory1.dao;
 
 import kr.Farmstory1.db.DBhelper;
-import kr.Farmstory1.db.sql;
+import kr.Farmstory1.db.SQL;
 import kr.Farmstory1.dto.TermsDTO;
 import kr.Farmstory1.dto.UserDTO;
 
-public class UserDAO extends DBhelper{
-
+public class UserDAO extends DBhelper {
 	
 	private static UserDAO instance = new UserDAO();
 	public static UserDAO getInstance() {
 		return instance;
 	}
-	
 	private UserDAO() {}
-	
-	
-	public TermsDTO selectTerms() {
-		TermsDTO dto = null;
-		
-		try {
-			conn= getconnection();
-			stmt= conn.createStatement();
-			rs = stmt.executeQuery(sql.SELETE_TERMS);
-			
-			if(rs.next()) {
-				dto = new TermsDTO();
-				dto.setTerms(rs.getString(1));
-				dto.setPrivacy(rs.getString(2));
-			}
-			
-			close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return dto;
-	}
-	
+
+	// 기본 CRUD 
 	public void insertUser(UserDTO dto) {
-		
 		try {
-			conn= getconnection();
-			psmt=conn.prepareStatement(sql.INSERT_USER);
+			conn = getconnection();
+			psmt = conn.prepareStatement(SQL.INSERT_USER);
 			psmt.setString(1, dto.getUid());
 			psmt.setString(2, dto.getPass());
 			psmt.setString(3, dto.getName());
@@ -54,27 +30,25 @@ public class UserDAO extends DBhelper{
 			psmt.setString(10, dto.getRegip());
 			psmt.executeUpdate();
 			close();
-		} catch (Exception e) {
+			
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
-	
-	public UserDTO selectUser(String uid,String pass) {
+	public UserDTO selectUser(String uid, String pass) {
 		
 		UserDTO user = null;
 		
 		try {
-		
-			
-			conn= getconnection();
-			psmt= conn.prepareStatement(sql.SELETE_USER);
+			conn = getconnection();
+			psmt = conn.prepareStatement(SQL.SELECT_USER);
 			psmt.setString(1, uid);
 			psmt.setString(2, pass);
-			
-			rs= psmt.executeQuery();
+			rs = psmt.executeQuery();
 			
 			if(rs.next()) {
-				user= new UserDTO();
+				
+				user = new UserDTO();
 				user.setUid(rs.getString(1));
 				user.setPass(rs.getString(2));
 				user.setName(rs.getString(3));
@@ -88,31 +62,108 @@ public class UserDAO extends DBhelper{
 				user.setRegip(rs.getString(11));
 				user.setRegdate(rs.getString(12));
 				user.setLeaveDate(rs.getString(13));
-				
 			}
-			
 			close();
-		} catch (Exception e) {
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		return user;
-		
 	}
 	
+	public void selectUsers() {}
+	public void updateUser() {}
+	public void deleteUser() {}
 	
-	public int selectCount(UserDTO dto) {
+	// 추가
+	public int selectCountUid(String uid) {
 		int result = 0;
-		UserDTO user = dto;
-		
-		if(user.getUid()!=null) {
-			String uid = user.getUid();
+		try{
+			conn = getconnection();
+			psmt = conn.prepareStatement(SQL.SELECT_COUNT_UID);
+			psmt.setString(1, uid);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()){
+				result = rs.getInt(1);
+			}
+			close();
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-		
-		
+		return result;
+	}
+	public int selectCountNick(String nick) {
+		int result = 0;
+		try{
+			conn = getconnection();
+			psmt = conn.prepareStatement(SQL.SELECT_COUNT_NICK);
+			psmt.setString(1, nick);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()){
+				result = rs.getInt(1);
+			}
+			close();			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return result;
+	}
+	public int selectCountHp(String hp) {
+		int result = 0;
+		try{
+			conn = getconnection();
+			psmt = conn.prepareStatement(SQL.SELECT_COUNT_HP);
+			psmt.setString(1, hp);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()){
+				result = rs.getInt(1);
+			}
+			
+			close();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return result;
+	}
+	public int selectCountEmail(String email) {
+		int result = 0;
+		try{
+			conn = getconnection();
+			psmt = conn.prepareStatement(SQL.SELECT_COUNT_EMAIL);
+			psmt.setString(1, email);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()){
+				result = rs.getInt(1);
+			}
+			close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		return result;
 	}
 	
-	
+	public TermsDTO selectTerms() {
+		TermsDTO dto = new TermsDTO();
+
+		try{
+			conn = getconnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(SQL.SELECT_TERMS);
+			
+			if(rs.next()){
+				dto.setTerms(rs.getString(1));
+				dto.setPrivacy(rs.getString(2));
+			}
+			close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return dto;
+	}
 	
 }
