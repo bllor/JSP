@@ -26,7 +26,6 @@
 			alert('로그인이 실패하였습니다. 아이디 또는 비밀번호를 다시 확인하시기 바랍니다.');
 		}else if(success == 101){
 			alert('로그인을 먼저 하셔야 합니다.');
-			location.href ="/Farmstory1/user/login.jsp";
 		}
     
     
@@ -52,7 +51,7 @@
                 <a href="/Farmstory1/index.jsp">HOME |</a>
                 <%if(sessUser == null) {%>
                 <a href="/Farmstory1/user/login.jsp">로그인 |</a>
-                <a href="/Farmstory1/user/register.jsp">회원가입 |</a>
+                <a href="/Farmstory1/user/terms.jsp">회원가입 |</a>
                 <%}else{ %>
                 <a href="/Farmstory1/user/logout.jsp">로그아웃 |</a>
                 	<%if(!sessUser.getRole().equals("User")){ %>

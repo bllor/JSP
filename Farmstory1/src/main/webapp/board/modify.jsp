@@ -1,26 +1,32 @@
+<%@page import="kr.Farmstory1.dto.ArticleDTO"%>
+<%@page import="kr.Farmstory1.dao.ArticleDAO"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String group = request.getParameter("group");
 	String cate  = request.getParameter("cate");
+	String no = request.getParameter("no");
 	
 	pageContext.include("./_aside"+group+".jsp");
+	
+	ArticleDAO dao = new ArticleDAO();
+	ArticleDTO dto = dao.selectArticle(no);
 %>
 <section class="modify">
     <h3>글수정</h3>
     <article>
-        <form action="#" method="post">
+        <form action="/Farmstory1/proc/updateProc.jsp?no=<%=no %>" method="post">
         	<input type="hidden" name="no" value="">
             <table>
                 <tr>
                     <td>제목</td>
-                    <td><input type="text" name="title" value="" placeholder="제목을 입력하세요."/></td>
+                    <td><input type="text" name="title" value="" readonly/><%= dto.getTitle() %></td>
                 </tr>
                 <tr>
                     <td>내용</td>
                     <td>
-                        <textarea name="content"></textarea>                                
+                        <textarea name="content"><%=dto.getContent() %></textarea>                                
                     </td>
                 </tr>
                 <tr>

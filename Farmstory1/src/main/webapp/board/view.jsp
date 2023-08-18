@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="kr.Farmstory1.dto.ArticleDTO"%>
 <%@page import="kr.Farmstory1.dao.ArticleDAO"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
@@ -9,13 +10,15 @@
 	String no  = request.getParameter("no");
 
 	if(sessUser == null){
-		response.sendRedirect("/Farmstory1/board/list.jsp?success=101&group="+group+"cate="+cate);
+		response.sendRedirect("/Farmstory1/user/login.jsp?success=101&target=view&group="+group+"&cate="+cate+"&no="+no);
 		return;
 	}
 	
 	//데이터베이스 조회
 	ArticleDAO dao = new ArticleDAO();
 	ArticleDTO dto = dao.selectArticle(no);
+	List<ArticleDTO> comments = dao.selectComments(no);
+	
 	
 	pageContext.include("./_aside"+group+".jsp");
 %>
@@ -44,39 +47,49 @@
     </table>
     <div>
         <a href="#" class="btnDelete">삭제</a>
-        <a href="./modify.jsp?group=<%= group %>&cate=<%= cate %>" class="btnModify">수정</a>
+        <a href="./modify.jsp?group=<%= group %>&cate=<%= cate %>&no=<%=no %>" class="btnModify">수정</a>
         <a href="./list.jsp?group=<%= group %>&cate=<%= cate %>" class="btnList">목록</a>
     </div>
     
     <!-- 댓글리스트 -->
     <section class="commentList">
-        <h3>댓글목록</h3>
-        <article class="comment">
-        	<form action="#" method="post">
-        		<input type="hidden" name="no"     value="">
-        		<input type="hidden" name="parent" value="">
-             <span>
-                 <span></span>
-                 <span></span>
-             </span>
-             <textarea name="comment" readonly></textarea>
-             
-             <div>
-                 <a href="#" class="del">삭제</a>
-                 <a href="#" class="can">취소</a>
-                 <a href="#" class="mod">수정</a>
-             </div>                
-            </form>
-        </article>
-        <p class="empty">등록된 댓글이 없습니다.</p>
+         <h3>댓글목록</h3>
+                    <%for(ArticleDTO comment : comments){ %>
+                    <article class="comment">
+                    	<form action="#"method = "post">
+                    	<input type= "hidden" name="no" value="">
+                    	<input type= "hidden" name="parent" value="">
+	                        <span>
+	                            <span><%= comment.getNick() %></span>
+	                            <span><%= comment.getRdate() %></span>                        
+	                        </span>
+	                        <textarea name="comment" readonly><%= comment.getContent() %></textarea>
+	                        
+	                        <%if(sessUser.getUid().equals(comment.getWriter())){ %>
+	                        <div>
+	                            <a href="#" class= "del">삭제</a>
+	                            <a href="#" class= "can">취소</a>
+	                            <a href="#" class= "mod">수정</a>
+	                        </div>
+	                        <%} %>
+                        </form>
+                    </article>
+               		<%} %>
+                    <%if(comments.isEmpty()) {//comment.size()로 해도됨.%>
+                    <p class="empty">
+                        등록된 댓글이 없습니다.
+                    </p>
+                    <%} %>
     </section>
 
     <!-- 댓글입력폼 -->
     <section class="commentForm">
         <h3>댓글쓰기</h3>
-        <form action="#" method="post">
-        	<input type="hidden" name="parent" value=""/>
-        	<input type="hidden" name="writer" value=""/>
+        <form action="/Farmstory1/board/proc/commentInsert.jsp" method="post">
+        	<input type="hidden" name="group" value="<%=group%>"/>
+        	<input type="hidden" name="cate" value="<%=cate %>"/>
+        	<input type="hidden" name="parent" value="<%=no%>"/>
+        	<input type="hidden" name="writer" value="<%=sessUser.getUid()%>"/>
             <textarea name="content"></textarea>
             <div>
                 <a href="#" class="btnCancel">취소</a>
