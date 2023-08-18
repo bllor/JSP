@@ -19,7 +19,7 @@
         
         <article>
             <nav>
-                <img src="../images/sub_nav_tit_cate5_<%= cate %>.png" alt="커뮤니티"/>
+                <img src="/Farmstory1/images/sub_nav_tit_cate5_<%= cate %>.png" alt="커뮤니티"/>
                 <p>
                     HOME > 커뮤니티 > 
                     <%

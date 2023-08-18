@@ -21,7 +21,7 @@ $(function(){
 			};
 			
 			$.ajax({
-				url:'/Jboard1/user/checkUid.jsp',
+				url:'/Farmstory1/user/checkUid.jsp',
 				type:'GET',
 				data:jsonData,
 				dataType:'json',
@@ -71,7 +71,7 @@ $(function(){
 			
 			
 			//데이터 전송
-			$.get('/Jboard1/user/checkNick.jsp', jsonData, function(data){
+			$.get('/Farmstory1/user/checkNick.jsp', jsonData, function(data){
 				//get방식으로 사용했으므로 주소 뒤에 nick=입력한 별명 으로 보내짐
 				
 				if(data.result >=1){
@@ -88,6 +88,7 @@ $(function(){
 		});//닉네임 중복체크 끝
 		
 		//이메일 중복체크
+		/*
 		const email = document.getElementsByName('email')[0];
 		email.onfocusout = function(){
 			
@@ -104,7 +105,7 @@ $(function(){
 			
 			
 			const xhr = new XMLHttpRequest();
-			xhr.open('GET','/Jboard1/user/checkEmail.jsp?email='+email);
+			xhr.open('GET','/Farmstory1/user/checkEmail.jsp?email='+email);
 			xhr.send();
 			
 			xhr.onreadystatechange = function(){
@@ -133,6 +134,48 @@ $(function(){
 			}//onreadystatechange end
 			
 		}//email.onfocus end
+		*/
+		
+		document.getElementsByName('email')[0].onfocusout = function(){
+		
+		const resultEmail = document.getElementById('resultEmail');
+		
+		// 입력 데이터 가져오기
+		const email = this.value;
+		
+		if(!email.match(reEmail)){
+			resultEmail.innerText = '유효한 이메일이 아닙니다.';
+			resultEmail.style.color = 'red';
+			isEmailOk = false;
+			return;
+		}
+
+		// 데이터 전송
+		const xhr = new XMLHttpRequest();
+		xhr.open('GET', '/Farmstory1/user/checkEmail.jsp?email='+email);
+		xhr.send();
+		
+		// 응답 결과
+		xhr.onreadystatechange = function(){    				
+			if(xhr.readyState == XMLHttpRequest.DONE){						
+				if(xhr.status == 200){
+					const data = JSON.parse(xhr.response);
+					console.log('data : ' + data);
+					
+					if(data.result >= 1){
+						resultEmail.innerText = '이미 사용중인 이메일 입니다.';
+						resultEmail.style.color = 'red';
+						isEmailOk = false;
+					}else{
+						resultEmail.innerText = '사용 가능한 이메일 입니다.';
+						resultEmail.style.color = 'green';
+						isEmailOk = true;
+					}
+				}
+			}    				
+		}// onreadystatechange end
+	} // 이메일 중복체크 끝
+		
 		
 		
 		//휴대폰 중복체크
@@ -150,7 +193,7 @@ $(function(){
 			}
 			
 			
-			const url = '/Jboard1/user/checkHp.jsp?hp='+this.value;
+			const url = '/Farmstory1/user/checkHp.jsp?hp='+this.value;
 			
 			fetch(url)
 				.then(response => response.json())

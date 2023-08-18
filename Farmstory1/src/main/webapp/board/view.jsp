@@ -1,9 +1,21 @@
+<%@page import="kr.Farmstory1.dto.ArticleDTO"%>
+<%@page import="kr.Farmstory1.dao.ArticleDAO"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String group = request.getParameter("group");
 	String cate  = request.getParameter("cate");
+	String no  = request.getParameter("no");
+
+	if(sessUser == null){
+		response.sendRedirect("/Farmstory1/board/list.jsp?success=101&group="+group+"cate="+cate);
+		return;
+	}
+	
+	//데이터베이스 조회
+	ArticleDAO dao = new ArticleDAO();
+	ArticleDTO dto = dao.selectArticle(no);
 	
 	pageContext.include("./_aside"+group+".jsp");
 %>
@@ -12,8 +24,9 @@
     <table>
         <tr>
             <td>제목</td>
-            <td><input type="text" name="title" value="" readonly/></td>
+            <td><input type="text" name="title" value="<%= dto.getTitle()%>" readonly/></td>
         </tr>
+        <% if (dto.getFile()>0){ %>
         <tr>
             <td>첨부파일</td>
             <td>
@@ -21,17 +34,18 @@
                 <span>7회 다운로드</span>
             </td>
         </tr>
+        <%} %>
         <tr>
             <td>내용</td>
             <td>
-                <textarea name="content" readonly></textarea>
+                <textarea name="content" readonly><%=dto.getContent() %></textarea>
             </td>
         </tr>
     </table>
     <div>
         <a href="#" class="btnDelete">삭제</a>
         <a href="./modify.jsp?group=<%= group %>&cate=<%= cate %>" class="btnModify">수정</a>
-        <a href="#" class="btnList">목록</a>
+        <a href="./list.jsp?group=<%= group %>&cate=<%= cate %>" class="btnList">목록</a>
     </div>
     
     <!-- 댓글리스트 -->

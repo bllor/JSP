@@ -14,7 +14,7 @@
         </aside>
         <article>
             <nav>
-                <img src="../images/sub_nav_tit_cate4_tit1.png" alt="이벤트"/>
+                <img src="/Farmstory1/images/sub_nav_tit_cate4_tit1.png" alt="이벤트"/>
                 <p>
                     HOME > 이벤트 > <em>이벤트</em>
                 </p>
