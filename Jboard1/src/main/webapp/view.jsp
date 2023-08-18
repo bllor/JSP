@@ -40,15 +40,15 @@
 				//수정완료 클릭
 				
 				if(confirm('정말 수정하시겠습니까?')){
-					return true;
+					$(this).closest('form').submit();
 				}else{
-					return false;
+					$(this).parent().prev().val(comment);
 				}
 				
 				
 				//수정 데이터 전송
 				//$(this).parent().parent()==$(this).closest('form') this에 가장 근접한 form태그를 선택.
-				$(this).closest('form').submit();
+				
 				
 				//수정모드 해제
 				$(this).parent().prev().removeClass('modi');
