@@ -166,4 +166,33 @@ public class UserDAO extends DBhelper {
 		return dto;
 	}
 	
+	public void updateArticleForCommentPlus(String no) {
+		
+		try {
+			
+			conn = getconnection();
+			psmt = conn.prepareStatement(SQL.UPDATE_ARTICLE_FOR_COMMENT_PLUS);
+			psmt.setString(1, no);
+			psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateArticleForCommentMinus(String no) {
+		
+		try {
+			
+			conn = getconnection();
+			psmt = conn.prepareStatement(SQL.UPDATE_ARTICLE_FOR_COMMENT_MINUS);
+			psmt.setString(1, no);
+			psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 }

@@ -8,20 +8,24 @@
 	String cate  = request.getParameter("cate");
 	String no = request.getParameter("no");
 	
-	pageContext.include("./_aside"+group+".jsp");
-	
 	ArticleDAO dao = new ArticleDAO();
 	ArticleDTO dto = dao.selectArticle(no);
+	
+	
+	pageContext.include("./_aside"+group+".jsp");
+	
 %>
 <section class="modify">
     <h3>글수정</h3>
     <article>
-        <form action="/Farmstory1/proc/updateProc.jsp?no=<%=no %>" method="post">
-        	<input type="hidden" name="no" value="">
+        <form action="/Farmstory1/board/proc/updateProc.jsp" method="post">
+        	<input type="hidden" name="no" value="<%=no%>">
+        	<input type="hidden" name="group" value="<%=group%>">
+        	<input type="hidden" name="cate" value="<%=cate%>">
             <table>
                 <tr>
                     <td>제목</td>
-                    <td><input type="text" name="title" value="" readonly/><%= dto.getTitle() %></td>
+                    <td><input type="text" name="title" value="<%= dto.getTitle() %>" /></td>
                 </tr>
                 <tr>
                     <td>내용</td>
@@ -35,7 +39,7 @@
                 </tr>
             </table>
             <div>
-                <a href="#" class="btnCancel">취소</a>
+                <a href="/Farmstory1/board/view.jsp?group=<%= group %>&cate=<%= cate %>&no=<%=dto.getNo()%>" class="btnCancel">취소</a>
                 <input type="submit"  class="btnWrite" value="수정완료">
             </div>
         </form>

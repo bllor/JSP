@@ -22,6 +22,62 @@
 	
 	pageContext.include("./_aside"+group+".jsp");
 %>
+<script>
+
+	$(function(){
+	
+		$('.btnDelete').click(function(){
+			if(confirm('정말로 삭제하시겠습니까?')){
+				return true;
+			}else{
+				return false;
+			}
+		
+		})//btnDelete end
+		
+		
+		$('.mod').click(function(e){
+			e.preventDefault();
+			
+			const txt = $(this).text();
+			
+			if(txt=='수정'){
+				comment = $(this).parent().prev().val();
+				//수정모드
+				$(this).parent().prev().addClass('modi');
+				$(this).parent().prev().attr(`readonly`, false);
+				$(this).parent().prev().focus();
+				$(this).text('수정완료');
+				$(this).prev().show();
+			}else{
+				//수정완료 클릭
+				
+				if(confirm('정말 수정하시겠습니까?')){
+					//수정 데이터 전송
+					$(this).closest('form').submit();
+					
+				}else{
+					$(this).parent().prev().val(comment);
+				}
+				
+				
+				
+				
+				//수정모드 해제
+				$(this).parent().prev().removeClass('modi');
+				$(this).parent().prev().attr('readonly',true);
+				$(this).text('수정');
+				$(this).prev().hide();
+			}
+			
+			
+		});//mod end
+		
+		
+	});
+	
+
+</script>
 <section class="view">
     <h3>글보기</h3>
     <table>
@@ -46,7 +102,7 @@
         </tr>
     </table>
     <div>
-        <a href="#" class="btnDelete">삭제</a>
+        <a href="./delete.jsp?group=<%= group %>&cate=<%= cate %>&no=<%=no %>" class="btnDelete">삭제</a>
         <a href="./modify.jsp?group=<%= group %>&cate=<%= cate %>&no=<%=no %>" class="btnModify">수정</a>
         <a href="./list.jsp?group=<%= group %>&cate=<%= cate %>" class="btnList">목록</a>
     </div>
@@ -56,19 +112,19 @@
          <h3>댓글목록</h3>
                     <%for(ArticleDTO comment : comments){ %>
                     <article class="comment">
-                    	<form action="#"method = "post">
+                    	<form action="/Farmstory1/board/proc/commentUpdate.jsp?no=<%= comment.getNo() %>&parent=<%= comment.getParent()%>&group=<%=group %>&cate=<%=cate %>" method = "post">
                     	<input type= "hidden" name="no" value="">
                     	<input type= "hidden" name="parent" value="">
 	                        <span>
 	                            <span><%= comment.getNick() %></span>
 	                            <span><%= comment.getRdate() %></span>                        
 	                        </span>
-	                        <textarea name="comment" readonly><%= comment.getContent() %></textarea>
+	                        <textarea name="content" readonly><%= comment.getContent() %></textarea>
 	                        
 	                        <%if(sessUser.getUid().equals(comment.getWriter())){ %>
 	                        <div>
-	                            <a href="#" class= "del">삭제</a>
-	                            <a href="#" class= "can">취소</a>
+	                            <a href="/Farmstory1/board/proc/commentDelete.jsp?no=<%= comment.getNo() %>&parent=<%= comment.getParent()%>&group=<%=group %>&cate=<%=cate %>" class= "del">삭제</a>
+	                            <a href="/Farmstory1/board/view.jsp?no=<%= no %>&cate=<%=cate %>&group=<%=group %>" class= "can">취소</a>
 	                            <a href="#" class= "mod">수정</a>
 	                        </div>
 	                        <%} %>

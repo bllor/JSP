@@ -33,10 +33,16 @@ public class SQL {
 	
 	public final static String INSERT_COMMENT = "INSERT INTO `Article` SET "
 												+ "`parent`=?, "
+												+ "`cate`=?, "
 												+ "`content`=?,"
 												+ "`writer`=?,"
 												+ "`regip`=?,"
 												+ "`rdate`=NOW()";
+	
+	public final static String SELECT_LATESTS = "SELECT `no`, `title`, `rdate` FROM `Article` "
+												+ "WHERE `cate`=?  and `parent`=0 "
+												+ "order by `no` desc limit ?";
+	
 	
 	public final static String SELECT_ARTICLE = "SELECT * FROM `Article` WHERE `no`=?";
 	public final static String SELECT_ARTICLES = "SELECT "
@@ -66,6 +72,8 @@ public class SQL {
 
 	public final static String DELETE_ARTICLE = "DELETE FROM `Article` WHERE `no`=? OR `parent`=?";
 	public final static String DELETE_COMMENT = "DELETE FROM `Article` WHERE `no`=?";
+	
+	
 	
 	
 }
