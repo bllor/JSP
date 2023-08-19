@@ -13,7 +13,7 @@ public class UserDTO {
 	private String addr1;
 	private String addr2;
 	private String regip;
-	private String regdate;
+	private String regDate;
 	private String leaveDate;
 	
 	
@@ -83,11 +83,11 @@ public class UserDTO {
 	public void setRegip(String regip) {
 		this.regip = regip;
 	}
-	public String getRegdate() {
-		return regdate;
+	public String getRegDate() {
+		return regDate;
 	}
-	public void setRegdate(String regdate) {
-		this.regdate = regdate;
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
 	}
 	public String getLeaveDate() {
 		return leaveDate;

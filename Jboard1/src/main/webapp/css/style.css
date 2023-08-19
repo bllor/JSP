@@ -583,7 +583,7 @@ main{
     background: transparent;
 }
 
-.view > .commentList > article  textarea.modi{
+.view > .commentList > article  textarea .modi{
 	border: 1px solid #bbb;
 	background: white;
 

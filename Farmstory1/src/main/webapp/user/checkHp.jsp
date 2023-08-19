@@ -6,10 +6,10 @@
 
 	//데이터 수신
 	request.setCharacterEncoding("UTF-8");
-	String uid = request.getParameter("uid");
+	String hp = request.getParameter("hp");
 	
 	// DB 조회
-	int result = UserDAO.getInstance().selectCountUid(uid);
+	int result = UserDAO.getInstance().selectCountUid(hp);
 	
 	// Json 생성
 	JsonObject json = new JsonObject();
