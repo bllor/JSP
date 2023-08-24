@@ -58,8 +58,7 @@ public class HelloServlet extends HttpServlet{
 		
 		if(uid.equals("a101") && pass.equals("1234")) {
 			session.setAttribute("SessUid", uid);
-			session.setAttribute("SessPass", pass);
-
+			
 			resp.sendRedirect("/Ch09/3_Listener.jsp?success=200");
 		}else {
 			//로그인 실패 가정
