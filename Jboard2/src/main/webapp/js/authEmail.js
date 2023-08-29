@@ -50,6 +50,15 @@ $(function(){
 						
 					}else{
 						
+						if(data.status>0){
+							$('.resultEmail').css('color','green').text('이메일을 확인 후 인증 코드를 입력하세요.');
+							$('auth').show();
+							$('input[name=email]').attr('readonly',true);
+							
+						}else{
+							$('.resultEmail').css('color','red').text('인증코드 전송이 실패하였습니다. 잠시 후 다시 시도하십시오.');
+							$('.resultEmailForId').css('color','red').text('해당하는 사용자, 이메일이 일치하지 않습니다.');
+						}
 						
 					}
 					
@@ -57,11 +66,38 @@ $(function(){
 				
 			})
 			
-		});//timeout end
+		},1000);//timeout end
 		
 		
 		
 	});//click end
 	
+	
+	$('#btnEmailAuth').click(function(){
+		const code = $('input[name=auth]').val();
+		const jsonData={"code":code};
+		
+		
+		$.ajax({
+			
+			url:'/Jboard2/user/authEmail.do',
+			type: 'POST',
+			data: jsonData,
+			datatype: 'json',
+			success: function(data){
+				
+				if(data.result>0){
+					$('.resultEmail').css('color','green').text('이메일 인증이 완료되었습니다.');
+					$('.resultEmailForId').css('color','green').text('이메일 인증이 완료되었습니다.');
+					isEmailOk=true;
+				}else{
+					$('.resultEmail').css('color','red').text('이메일 인증이 실패하였습니다. 다시 시도하십시오.');
+					$('.resultEmailForId').css('color','red').text('이메일 인증이 실패 했습니다. 다시 시도하십시오.');
+					isEmailOk=false;
+				}
+			}
+		});
+		
+	});
 	
 });

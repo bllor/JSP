@@ -84,5 +84,6 @@ public class SQL {
 	
 	public final static String UPDATE_CONTENT="UPDATE `Article` set content=? where no=?";
 	
-	
+	public static final String SELECT_COUNT_NAME_EMAIL="SELECT COUNT(*)FROM `user` WHERE `name`=?, `email`=?";
+	public static final String SELECT_USER_BY_NAME_EMAIL="SELECT * FROM `user` WHERE `name`=?, `email`=?";
 }

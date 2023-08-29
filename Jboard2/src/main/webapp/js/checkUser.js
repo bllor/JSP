@@ -7,9 +7,9 @@ window.onload = function(){
 	const uidResult = document.getElementsByClassName('uidResult')[0];
 	const btnCheckuid = document.getElementById('btnCheckuid');
 
-	btnCheckuid.onclick = function(){
+	btnCheckUid.onclick = function(){
 		
-	const uid = inputuid.value;
+	const uid = inputUid.value;
 	
 	//아이디 유효성 검사
 	if(!uid.match(reUid)){
@@ -53,7 +53,7 @@ window.onload = function(){
 
 	//닉네임 중복체크
 	
-	$('btnCheckNick').click(function(){
+	$('#btnCheckNick').click(function(){
 		const nick = $('input[name=nick]').val();
 		
 		//별명 유효성 검사
