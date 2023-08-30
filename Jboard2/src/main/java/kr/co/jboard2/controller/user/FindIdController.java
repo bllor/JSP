@@ -12,14 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/user/findId.do")
 public class FindIdController extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -3295874385145085192L;
 
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/user/findId.jsp");
 		dispatcher.forward(req, resp);
 	}
-	
 }

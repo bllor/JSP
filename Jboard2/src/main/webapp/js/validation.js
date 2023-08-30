@@ -27,7 +27,7 @@ $(function(){
 	
 	//비밀번호 검사
 	
-	$('input[name=pss2]').focusout(function(){
+	$('input[name=pass2]').focusout(function(){
 		
 		const pass1 = $('input[name=pass1]').val();
 		const pass2 = $('input[name=pass2]').val();

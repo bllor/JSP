@@ -1,89 +1,117 @@
 package kr.co.jboard2.db;
 
 public class SQL {
+	// User
+	public static final String INSERT_USER = "INSERT INTO `User` SET "
+											+ "`uid`=?,"
+											+ "`pass`=SHA2(?, 256),"
+											+ "`name`=?,"											
+											+ "`nick`=?,"
+											+ "`email`=?,"
+											+ "`hp`=?,"
+											+ "`zip`=?,"
+											+ "`addr1`=?,"
+											+ "`addr2`=?,"
+											+ "`regip`=?,"
+											+ "`regDate`=NOW()";
+	
+	public static final String SELECT_USER        = "SELECT * FROM `User` WHERE `uid`=? AND `pass`=SHA2(?, 256)";
+	public static final String SELECT_USER_BY_NAME_AND_EMAIL = "SELECT * FROM `User` WHERE `name`=? AND `email`=?";
+	public static final String SELECT_COUNT_UID   = "SELECT COUNT(*) FROM `User` WHERE `uid`=?";
+	public static final String SELECT_COUNT_NICK  = "SELECT COUNT(*) FROM `User` WHERE `nick`=?";
+	public static final String SELECT_COUNT_EMAIL = "SELECT COUNT(*) FROM `User` WHERE `email`=?";
+	public static final String SELECT_COUNT_NAME_EMAIL = "SELECT COUNT(*) FROM `User` WHERE `name`=? AND `email`=?";
+	public static final String SELECT_COUNT_UID_EMAIL = "SELECT COUNT(*) FROM `User` WHERE `uid`=? AND `email`=?";
+	public static final String SELECT_COUNT_HP    = "SELECT COUNT(*) FROM `User` WHERE `hp`=?";
+	public static final String SELECT_TERMS       = "SELECT * FROM `Terms`";
+	
+	
+	public static final String UPDATE_USER = "UPDATE `User` SET "
+												+ "`name`=?,"
+												+ "`nick`=?,"
+												+ "`email`=?,"
+												+ "`hp`=?,"
+												+ "`zip`=?,"
+												+ "`addr1`=?,"
+												+ "`addr2`=? "
+												+ " WHERE `uid`=?";
+	
+	public static final String UPDATE_USER_PASS   = "UPDATE `User` SET `pass`=SHA2(?, 256) WHERE `uid`=?";
+	public static final String UPDATE_USER_FOR_WITHDRAW = "UPDATE `User` SET "
+															+ "`pass`=null,"
+															+ "`name`=null,"
+															+ "`nick`=null,"
+															+ "`email`=null,"
+															+ "`hp`=null,"
+															+ "`role`=null,"
+															+ "`zip`=null,"
+															+ "`addr1`=null,"
+															+ "`addr2`=null,"
+															+ "`leaveDate`=NOW() "
+															+ " WHERE `uid`=?";
 
 	
-	//Terms
 	
-	public final static String SELECT_TERMS="SELECT *FROM `Terms`";
 	
-	//user
+	// Article
+	public final static String INSERT_ARTICLE = "INSERT INTO `Article` SET "
+												+ "`title`=?, "
+												+ "`content`=?,"
+												+ "`writer`=?,"
+												+ "`regip`=?,"
+												+ "`rdate`=NOW()";
 	
-	public static final String INSERT_USER="insert into `User` set "
-											+"uid=?, "
-											+"pass=SHA2(?,256), "
-											+"name=?,"
-											+"nick=?, "
-											+"email=?, "
-											+"hp=?, "
-											+"zip=?, "
-											+"addr1=?, "
-											+"addr2=?, "
-											+"regip=?, "
-											+"regDate=NOW()";
-	//pass=SHA(비밀번호,256);
-	//비밀번호를 가릴 때 사용하는 것으로 비밀번호에 1234를 넣으면 256자리의 다른 글자로 만들어주어서 보안성을 높여준다.
+	public final static String INSERT_COMMENT = "INSERT INTO `Article` SET "
+												+ "`parent`=?, "
+												+ "`content`=?,"
+												+ "`writer`=?,"
+												+ "`regip`=?,"
+												+ "`rdate`=NOW()";
+	
+	public final static String SELECT_ARTICLE = "SELECT * FROM `Article` WHERE `no`=?";
+	public final static String SELECT_ARTICLES = "SELECT "
+												+ "a.*, "
+												+ "b.`nick` "
+												+ "FROM `Article` AS a "
+												+ "JOIN `User` AS b ON a.writer = b.uid "
+												+ "WHERE `parent`=0 "
+												+ "ORDER BY `no` DESC "
+												+ "LIMIT ?, 10";
+	
+	public final static String SELECT_COMMENTS = "SELECT "
+												+ "a.*, "
+												+ "b.`nick` "
+												+ "FROM `Article` AS a "
+												+ "JOIN `User` AS b ON a.writer = b.uid "
+												+ "WHERE `parent`=?";
+	
+	public final static String SELECT_COUNT_TOTAL = "SELECT COUNT(*) FROM `Article` WHERE `parent`=0";
+	
+	
+	
+	public final static String UPDATE_ARTICLE = "UPDATE `Article` SET `title`=?, `content`=? WHERE `no`=?";
+	public final static String UPDATE_ARTICLE_FOR_COMMENT_PLUS = "UPDATE `Article` SET `comment` = `comment` + 1 WHERE `no`=?";
+	public final static String UPDATE_ARTICLE_FOR_COMMENT_MINUS = "UPDATE `Article` SET `comment` = `comment` - 1 WHERE `no`=?";
+	public final static String UPDATE_COMMENT = "UPDATE `Article` SET `content`=? WHERE `no`=?";
+
+	public final static String DELETE_ARTICLE = "DELETE FROM `Article` WHERE `no`=? OR `parent`=?";
+	public final static String DELETE_COMMENT = "DELETE FROM `Article` WHERE `no`=?";
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 			
-	public static final String SELECT_USER="select * from `User` "
-											+ " where `uid`=? and "
-											+ " `pass`=SHA2(?,256)";
-	
-	public static final String SELECT_COUNT_UID ="select count(*) from `User` where `uid`=?";
-	
-	public static final String SELECT_COUNT_NICK="select count(*) from `User` where `nick`=?";
-	public static final String SELECT_COUNT_EMAIL="select count(*) from `User` where `email`=?";
-	public static final String SELECT_COUNT_HP="select count(*)from `User` where `hp`=?";
-	
-	public static final String INSERT_ARTICLE= "insert into `Article` set "//"INSERT INTO `article` set "
-												+" `title`=?,"
-												+" `content`=?,"
-												+" `writer`=?,"
-												+" `regip`=?,"
-												+" `rdate`=NOW()";
-	
-	public static final String SELETE_ARTICELS ="SELECT a.*, b.`nick` from `Article` as a "
-												+ " join User as b on a.writer = b. uid "
-												+" where parent ='0'"
-												+ " order by `no` desc "
-												+" Limit ?, 10";
-	
-	//parent 0이라는 말은 원글이라는 말-> 댓글은 parent에 no가 들어가므로
-	// limit ?,10을하므로써 ?부터10개를 view에 가지고 올 수 있다.
 	
 	
-	
-	public static final String SELECTE_COUNT_TOTAL="SELECT COUNT(*)FROM `Aticle` where `parent`=0" ;
-	//최신 글이 상단에 출력하기 위해서 order by를 추가하고,
-	//아이디를 닉네임으로 바꾸기 위해서 user를 조인하여 아이디를 가져온다.
-	
-	public static final String SELECTE_ARTICLE ="SELECT* FROM `Article` WHERE NO=?";
-
-	public final static String UPDATE_ARTICLE="UPDATE `Article` set title=?, content=?, regip=? where `no`=?";
-	
-	public final static String DELETE_ARTICLE= "DELETE FROM `Article` where no=? or parent=?";
-	
-	
-	public static final String INSERT_COMMENT= "insert into `Article` set "//"INSERT INTO `article` set "
-												+" `parent`=?, "//어떤 글의 댓글인지 알기 위해서 사용. 글번호를 parent에 넣음으로써 확인함.
-												+" `content`=?,"
-												+" `writer`=?,"
-												+" `regip`=?,"
-												+" `rdate`=NOW()";
-	
-	
-	public static final String UPDATE_ARTICLE_FOR_COMMENT_PLUS="UPDATE `Article` set `comment`=`comment`+1 where `no`=?";
-	
-	public static final String UPDATE_ARTICLE_FOR_COMMENT_MINUS="UPDATE `Article` set `comment`=`comment`-1 where `no`=?";
-	
-	public final static String DELETE_COMMENT ="DELETE FROM `Article` where `no`=?";
-	
-	
-	public static final String SELECTE_COMMENTS ="SELECT a.*, b.`nick` from `Article` as a "
-												+ "join User as b on a.writer = b. uid "
-												+ "where `parent`=?";
-	
-	public final static String UPDATE_CONTENT="UPDATE `Article` set content=? where no=?";
-	
-	public static final String SELECT_COUNT_NAME_EMAIL="SELECT COUNT(*)FROM `user` WHERE `name`=?, `email`=?";
-	public static final String SELECT_USER_BY_NAME_EMAIL="SELECT * FROM `user` WHERE `name`=?, `email`=?";
 }
