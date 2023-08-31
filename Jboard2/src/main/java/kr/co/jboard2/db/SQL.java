@@ -71,6 +71,11 @@ public class SQL {
 	
 	public final static String SELECT_MAX_NO = "SELECT MAX(`no`) FROM `Article`";
 	public final static String SELECT_ARTICLE = "SELECT * FROM `Article` WHERE `no`=?";
+	
+	public final static String SELECT_ARTICLE_AND_FILE = "SELECT a.*, b.`ofile` FROM `Article` AS a "
+														+ "JOIN `File` AS b ON a.no = b.ano "
+														+"where no=? and `parent`=0";
+	
 	public final static String SELECT_ARTICLES = "SELECT "
 												+ "a.*, "
 												+ "b.`nick` "

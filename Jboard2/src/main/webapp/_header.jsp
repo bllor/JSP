@@ -11,7 +11,7 @@
         <header>
             <h3>Board System v2.0</h3>
             <p>
-                <span><a href="/Jboard2/user/myInfo.do"></a>${sessUser.nick}</span>님 반갑습니다.
+                <span><a href="/Jboard2/user/myInfo.do">${sessUser.getNick()}</a></span>님 반갑습니다.
                 <a href="./user/login.do">[로그아웃]</a>
             </p>
         </header>

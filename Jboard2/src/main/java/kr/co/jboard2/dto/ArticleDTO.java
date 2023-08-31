@@ -12,10 +12,11 @@ public class ArticleDTO {
 	private int hit;
 	private String writer;
 	private String regip;
-	private String rdate;
+	private String regDate;
 	
 	//추가필드
 	private String nick;
+	private String ofile;
 	
 	public int getNo() {
 		return no;
@@ -89,15 +90,15 @@ public class ArticleDTO {
 	public void setRegip(String regip) {
 		this.regip = regip;
 	}
-	public String getRdate() {
-		return rdate.substring(2,10);
+	public String getRegDate() {
+		return regDate.substring(2,10);
 	}
 	
-	public String getFullRdate() {
-		return rdate;
+	public String getFullRegDate() {
+		return regDate;
 	}
-	public void setRdate(String rdate) {
-		this.rdate = rdate;
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
 	}
 	
 	public String getComment() {
@@ -112,5 +113,14 @@ public class ArticleDTO {
 	}
 	public void setNick(String nick) {
 		this.nick = nick;
+	}
+	
+	
+	public String getOfile() {
+		return ofile;
+	}
+	
+	public void setOfile(String ofile) {
+		this.ofile = ofile;
 	}
 }

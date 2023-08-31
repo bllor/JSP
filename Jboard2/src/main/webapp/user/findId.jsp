@@ -1,36 +1,58 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="./_header.jsp" %>
+<%@ page  contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file ="./_header.jsp"%>
+<script src ="/Jboard2/js/validation.js"></script>
+<script src ="/Jboard2/js/authEmail.js"></script>
+<script>
+	$(function(){
+		
+		$('.btnNext').click(function(e){
+			e.preventDefault();
+			
+			if(isEmailOk){
+				$('#formFindId').submit();
+			}else{
+				alert('이메일 인증을 수행하셔야 합니다.');
+			}
+			
+		})
+		
+	});
+</script>
 <main id="user">
-    <section class="find findIdResult">
-        <form action="#">
+    <section class="find findId">
+        <form id="formFindId" action="/Jboard2/user/findIdResult.do" method="POST">
+        	<input type="hidden" name="type" value="FIND_ID"/>
             <table border="0">
-                <caption>아이디 찾기 결과</caption>
+                <caption>아이디 찾기</caption>
                 <tr>
                     <td>이름</td>
-                    <td>${requestScope.user.name}</td>
-                </tr>
-                <tr>
-                    <td>아이디</td>
-                    <td>${user.getUid()}</td>
+                    <td><input type="text" name="name" placeholder="이름 입력"/></td>
                 </tr>
                 <tr>
                     <td>이메일</td>
-                    <td>${user.email}</td>
-                </tr>
-                <tr>
-                    <td>가입일</td>
-                    <td>${user.regDate}</td>
-                </tr>
+                    <td>
+                        <div>
+                            <input type="email" name="email" placeholder="이메일 입력"/>
+                            <button type="button" id="btnEmailCode" class="btnAuth">인증번호 받기</button>
+                            <span class="resultEmailForId"></span>
+                        </div>
+                        <div>
+                            <input type="text" name="auth" disabled placeholder="인증번호 입력"/>
+                            <button type="button" id="btnEmailAuth" class="btnConfirm">확인</button>
+                        </div>
+                    </td>
+                </tr>                        
             </table>                                        
         </form>
         
         <p>
-            고객님의 정보와 일치하는 아이디 입니다.
+            회원가입시 이메일 주소와 입력한 이메일 주소가 같아야, 인증번호를 받을 수 있습니다.<br>
+            인증번호를 입력 후 확인 버튼을 누르세요.
         </p>
 
         <div>
-            <a href="/Jboard2/user/login.do" class="btn btnCancel">로그인</a>
-            <a href="/Jboard2/user/findPass.do" class="btn btnNext">비밀번호 찾기</a>
+            <a href="/Jboard2/user/login.do" class="btn btnCancel">취소</a>
+            <a href="/Jboard2/user/findIdResult.do" class="btn btnNext">다음</a>
         </div>
     </section>
 </main>
