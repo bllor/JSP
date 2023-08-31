@@ -28,6 +28,10 @@
                     <div>
                         <a href="./list.do" class="btn btnCancel">취소</a>
                         <input type="submit" value="작성완료" class="btn btnComplete"/>
+                        <!-- 
+                        	여러개의 파일을 업로드 하기 위한 방법 multiple 속성이용  multiple ="multiple"
+                        	한 번 생각해보기
+                        -->
                     </div>
                 </form>
 

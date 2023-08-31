@@ -42,6 +42,8 @@ public class WriteController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
+		/*
+		 모듈화하기 -> uploadfile
 		//파일 업로드 경로 구하기
 		ServletContext ctx = req.getServletContext();
 		 String path = ctx.getRealPath("/upload");
@@ -52,6 +54,9 @@ public class WriteController extends HttpServlet {
 		 //파일 업로드
 		MultipartRequest mr = new MultipartRequest(req,path,maxSize,"UTF-8",new DefaultFileRenamePolicy());
 		
+		*/
+		
+		MultipartRequest mr = aService.uploadfile(req);
 		
 		
 		//폼데이터수신
@@ -82,6 +87,8 @@ public class WriteController extends HttpServlet {
 		
 		//파일명 수정 및 파일 테이블 Insert
 		if(oName != null) {
+			/*
+			 * 모듈화 -> aService.renameToFile
 		int i=oName.lastIndexOf(".");
 		String ext = oName.substring(i);
 		
@@ -91,9 +98,11 @@ public class WriteController extends HttpServlet {
 		File f1 = new File(path+"/"+oName);
 		File f2 = new File(path+"/"+sName);
 		
+		
 		//파일명 수정
 		f1.renameTo(f2);
-		
+		*/
+		String sName = aService.renameToFile(req, oName);	
 		//파일 테이블 Insert
 		FileDTO filedto = new FileDTO();
 		filedto.setAno(no);
