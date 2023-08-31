@@ -61,12 +61,18 @@ public class WriteController extends HttpServlet {
 		String oName 	= mr.getOriginalFileName("file");
 		String regip 	= req.getRemoteAddr();
 		
-		
+		logger.debug("title: "+title);
+		logger.debug("content: "+content);
+		logger.debug("writer: "+writer);
+		logger.debug("oName: "+oName);
+		logger.debug("regip: "+regip);
 		
 		//DTO 생성
 		ArticleDTO dto = new ArticleDTO();
 		dto.setTitle(title);
 		dto.setContent(content);
+		//dto.setFile(oName==null? 0 : 1);
+		dto.setFile(oName);
 		dto.setWriter(writer);
 		dto.setRegip(regip);
 		

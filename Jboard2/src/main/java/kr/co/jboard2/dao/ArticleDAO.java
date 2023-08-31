@@ -20,8 +20,9 @@ public class ArticleDAO extends DBHelper{
 			psmt = conn.prepareStatement(SQL.INSERT_ARTICLE);
 			psmt.setString(1, dto.getTitle());
 			psmt.setString(2, dto.getContent());
-			psmt.setString(3, dto.getWriter());//(3, sessUser.getUid())로 해도됨
-			psmt.setString(4, dto.getRegip());
+			psmt.setInt(3, dto.getFile());
+			psmt.setString(4, dto.getWriter());//(3, sessUser.getUid())로 해도됨
+			psmt.setString(5, dto.getRegip());
 			psmt.executeUpdate();//insert end
 			//글쓰기 끝
 			rs = stmt.executeQuery(SQL.SELECT_MAX_NO);
