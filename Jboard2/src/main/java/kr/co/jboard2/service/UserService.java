@@ -94,7 +94,7 @@ public class UserService {
 		
 		// 기본정보
 		String sender = "duki0105@gmail.com";
-		String password = "ehddlf12";
+		String password = "rrabandsoedhkxzf";
 		String title = "Jboard2 인증코드 입니다.";
 		String content = "<h1>인증코드는 " + code + "</h1>";
 		

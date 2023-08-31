@@ -56,9 +56,9 @@ public class SQL {
 	// Article
 	public final static String INSERT_ARTICLE = "INSERT INTO `Article` SET "
 												+ "`title`=?, "
-												+ "`content`=?,"
-												+ "`writer`=?,"
-												+ "`regip`=?,"
+												+ "`content`=?, "
+												+ "`writer`=?, "
+												+ "`regip`=?, "
 												+ "`rdate`=NOW()";
 	
 	public final static String INSERT_COMMENT = "INSERT INTO `Article` SET "
@@ -68,6 +68,7 @@ public class SQL {
 												+ "`regip`=?,"
 												+ "`rdate`=NOW()";
 	
+	public final static String SELECT_MAX_NO = "SELECT MAX(`no`) FROM `Article`";
 	public final static String SELECT_ARTICLE = "SELECT * FROM `Article` WHERE `no`=?";
 	public final static String SELECT_ARTICLES = "SELECT "
 												+ "a.*, "
@@ -96,6 +97,14 @@ public class SQL {
 
 	public final static String DELETE_ARTICLE = "DELETE FROM `Article` WHERE `no`=? OR `parent`=?";
 	public final static String DELETE_COMMENT = "DELETE FROM `Article` WHERE `no`=?";
+	
+	
+	//File
+	public final static String INSERT_FILE ="INSERT INTO `File` set "
+											+"`ano`=?, "
+											+"`ofile`=?, "
+											+"`sfile`=?, "
+											+"`rdate`=NOW()";
 	
 	
 	
