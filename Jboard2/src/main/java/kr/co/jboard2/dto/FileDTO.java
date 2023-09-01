@@ -7,7 +7,7 @@ public class FileDTO {
 	private String ofile;
 	private String sfile;
 	private int download;
-	private String rate;
+	private String rdate;
 	
 	public int getFno() {
 		return fno;
@@ -39,13 +39,18 @@ public class FileDTO {
 	public void setDownload(int download) {
 		this.download = download;
 	}
-	public String getRate() {
-		return rate;
+	public String getRdate() {
+		return rdate;
 	}
-	public void setRate(String rate) {
-		this.rate = rate;
+	public void setRdate(String rdate) {
+		this.rdate = rdate;
 	}
-	
+	@Override
+	public String toString() {
+		return "FileDTO [fno=" + fno + ", ano=" + ano + ", ofile=" + ofile + ", sfile=" + sfile + ", download="
+				+ download + ", rdate=" + rdate + "]";
+	}
+	//마우스 오른쪽 클릭하여 source -> generate toString으로 모든 속성값을 선택한 다음 generate를 누르면 출력됨.
 	
 	
 }

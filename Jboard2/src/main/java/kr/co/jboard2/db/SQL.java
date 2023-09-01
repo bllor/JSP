@@ -70,11 +70,12 @@ public class SQL {
 												+ "`rdate`=NOW()";
 	
 	public final static String SELECT_MAX_NO = "SELECT MAX(`no`) FROM `Article`";
-	public final static String SELECT_ARTICLE = "SELECT * FROM `Article` WHERE `no`=?";
 	
-	public final static String SELECT_ARTICLE_AND_FILE = "SELECT a.*, b.`ofile` FROM `Article` AS a "
-														+ "JOIN `File` AS b ON a.no = b.ano "
+	public final static String SELECT_ARTICLE = "SELECT * FROM `Article` AS a "
+														+ "LEFT JOIN `File` AS b ON a.no = b.ano "
 														+"where no=? and `parent`=0";
+	//LEFT조인을 함으로써 Article 테이블의 정보는 다 가져오고, File테이블에서는 join에 해당하는 데이터만 가져온다.
+	//어제는 LEFT조인을 생각하지 못해서 데이터를 가져오지 못했다
 	
 	public final static String SELECT_ARTICLES = "SELECT "
 												+ "a.*, "
@@ -84,6 +85,16 @@ public class SQL {
 												+ "WHERE `parent`=0 "
 												+ "ORDER BY `no` DESC "
 												+ "LIMIT ?, 10";
+
+	public final static String SELECT_ARTICLES_FOR_SEARCH = "SELECT "
+															+ "a.*, "
+															+ "b.`nick` "
+															+ "FROM `Article` AS a "
+															+ "JOIN `User` AS b ON a.writer = b.uid "
+															+ "WHERE `parent`=0 and `title` LIKE ? "
+															+ "ORDER BY `no` DESC "
+															+ "LIMIT ?, 10";
+
 	
 	public final static String SELECT_COMMENTS = "SELECT "
 												+ "a.*, "
@@ -93,6 +104,7 @@ public class SQL {
 												+ "WHERE `parent`=?";
 	
 	public final static String SELECT_COUNT_TOTAL = "SELECT COUNT(*) FROM `Article` WHERE `parent`=0";
+	public final static String SELECT_COUNT_TOTAL_FOR_SEARCH = "SELECT COUNT(*) FROM `Article` WHERE `parent`=0 AND `title`LIKE ?";
 	
 	
 	
@@ -113,7 +125,11 @@ public class SQL {
 											+"`rdate`=NOW()";
 	
 	
+	public final static String SELECT_FILE ="select * from `File` where `fno`=?";
 	
+	public final static String DELETE_FILE="delete  from `File` where ano=?";
+	//fno로 하면 같은 글에 대해서 파일이 여러개 일 때 여러 개 모두를 삭제할 수 없음
+	//글번호로 하게 되면 글을 지울 때 여러 개의 파일 모두를 삭제할 수 있으므로, ano로 한다.
 	
 	
 	

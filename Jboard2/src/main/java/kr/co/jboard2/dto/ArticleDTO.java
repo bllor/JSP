@@ -16,7 +16,7 @@ public class ArticleDTO {
 	
 	//추가필드
 	private String nick;
-	private String ofile;
+	private FileDTO fileDto;//FileDTO의 속성을 모두 입력하는 것과 같다.
 	
 	public int getNo() {
 		return no;
@@ -116,11 +116,13 @@ public class ArticleDTO {
 	}
 	
 	
-	public String getOfile() {
-		return ofile;
+	
+	public FileDTO getFileDto() {
+		return fileDto;
+	}
+	public void setFileDto(FileDTO fileDto) {
+		this.fileDto = fileDto;
 	}
 	
-	public void setOfile(String ofile) {
-		this.ofile = ofile;
-	}
+	
 }

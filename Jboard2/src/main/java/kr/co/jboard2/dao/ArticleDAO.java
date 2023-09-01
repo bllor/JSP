@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import kr.co.jboard2.db.DBHelper;
 import kr.co.jboard2.db.SQL;
 import kr.co.jboard2.dto.ArticleDTO;
+import kr.co.jboard2.dto.FileDTO;
 
 public class ArticleDAO extends DBHelper{
 
@@ -34,12 +35,14 @@ public class ArticleDAO extends DBHelper{
 			rs = stmt.executeQuery(SQL.SELECT_MAX_NO);
 			//글쓰기가 완료된 후 글의 번호를 받아오는 작업
 			
-			conn.commit();//트랜잭션 작업 확정
 			
 			if(rs.next()) {
 				no= rs.getInt(1);
 				//글의 번호를 no에 저장함
 			}
+			
+			
+			conn.commit();//트랜잭션 작업 확정
 			
 			close();
 			
@@ -52,27 +55,36 @@ public class ArticleDAO extends DBHelper{
 		return no;
 	}
 	public ArticleDTO selectArticle(String no) {
-		ArticleDTO dto = new ArticleDTO();
+		ArticleDTO article = new ArticleDTO();
 		
 		try {
 			
 			conn= getConnection();
-			psmt = conn.prepareStatement(SQL.SELECT_ARTICLE_AND_FILE);
+			psmt = conn.prepareStatement(SQL.SELECT_ARTICLE);
 			psmt.setString(1, no);
 			rs= psmt.executeQuery();
 			if(rs.next()) {
-				dto.setNo(rs.getInt("no"));
-				dto.setParent(rs.getInt("parent"));
-				dto.setComment(rs.getString("comment"));
-				dto.setCate(rs.getString("cate"));
-				dto.setTitle(rs.getString("title"));
-				dto.setContent(rs.getString("content"));
-				dto.setFile(rs.getInt("file"));
-				dto.setHit(rs.getInt("hit"));
-				dto.setWriter(rs.getString("writer"));
-				dto.setRegip(rs.getString("regip"));
-				dto.setRegDate(rs.getString("rdate"));	
-				dto.setOfile(rs.getString("ofile"));
+				article.setNo(rs.getInt("no"));
+				article.setParent(rs.getInt("parent"));
+				article.setComment(rs.getString("comment"));
+				article.setCate(rs.getString("cate"));
+				article.setTitle(rs.getString("title"));
+				article.setContent(rs.getString("content"));
+				article.setFile(rs.getInt("file"));
+				article.setHit(rs.getInt("hit"));
+				article.setWriter(rs.getString("writer"));
+				article.setRegip(rs.getString("regip"));
+				article.setRegDate(rs.getString("rdate"));
+				
+				//파일정보
+				FileDTO fileDto = new FileDTO();
+				fileDto.setFno(rs.getInt(12));
+				fileDto.setAno(rs.getInt(13));
+				fileDto.setOfile(rs.getString(14));
+				fileDto.setSfile(rs.getString(15));
+				fileDto.setDownload(rs.getInt(16));
+				fileDto.setRdate(rs.getString(17));
+				article.setFileDto(fileDto);
 			}
 			
 			close();
@@ -81,16 +93,25 @@ public class ArticleDAO extends DBHelper{
 			logger.info("selectArticle() : "+e.getMessage());
 		}
 		
-		return dto;
+		return article;
 		
 	}
-	public List<ArticleDTO> selectArticles(int start) {
+	public List<ArticleDTO> selectArticles(int start,String search) {
 		List<ArticleDTO> articles = new ArrayList<>();
 		
 		try {
 			conn= getConnection();
-			psmt = conn.prepareStatement(SQL.SELECT_ARTICLES);
-			psmt.setInt(1, start);
+			
+			if(search==null) {
+				psmt = conn.prepareStatement(SQL.SELECT_ARTICLES);
+				psmt.setInt(1, start);
+					
+			}else {
+				psmt = conn.prepareStatement(SQL.SELECT_ARTICLES_FOR_SEARCH);
+				psmt.setString(1, "%"+search+"%");
+				psmt.setInt(2, start);
+
+			}
 			rs= psmt.executeQuery();
 			while(rs.next()) {
 				ArticleDTO dto = new ArticleDTO();
@@ -160,24 +181,35 @@ public List<ArticleDTO> selectComments(String parent) {
 	}
 	
 	//댓글입력
-	public void insertComment(ArticleDTO dto) {
+	public int insertComment(ArticleDTO dto) {
 		
-		
+		int no = 0;
 		
 		try {
-			
 			conn = getConnection();
+			conn.setAutoCommit(false);//트랜잭션 시작			
+			stmt = conn.createStatement();
+			//댓글입력
 			psmt = conn.prepareStatement(SQL.INSERT_COMMENT);
 			psmt.setInt(1, dto.getParent());
 			psmt.setString(2, dto.getContent());
 			psmt.setString(3, dto.getWriter());
 			psmt.setString(4, dto.getRegip());
 			psmt.executeUpdate();
+			//댓글번호 가져오기
+			rs = stmt.executeQuery(SQL.SELECT_MAX_NO);
+			conn.commit();//트랜잭션 작업 확정
 			
+			if(rs.next()) {
+				no= rs.getInt(1);
+				//글의 번호를 no에 저장함
+			}
 			close();	
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("insertComment() : "+e.getMessage());
 		}
+		
+		return no;
 	}
 
 	
@@ -196,17 +228,52 @@ public List<ArticleDTO> selectComments(String parent) {
 		}
 	}
 	
-	public void updateArticle() {}
-	public void deleteArticle() {}
+	//댓글 삭제
+	public int deleteComment(String no) {
+		int result =0;
+		
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.DELETE_COMMENT);
+			psmt.setString(1, no);
+			result = psmt.executeUpdate();
+			close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
-	public int selectCountTotal() {
+	
+	public void updateArticle() {}
+	
+	public void deleteArticle(String no) {
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.DELETE_ARTICLE);
+			psmt.setString(1, no);
+			psmt.setString(2, no);
+			psmt.executeUpdate();
+			close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public int selectCountTotal(String search) {
 		int total =0;
 		
 		
 		try {
 			
 			conn = getConnection();
-			psmt = conn.prepareStatement(SQL.SELECT_COUNT_TOTAL);
+			
+			if(search==null) {
+				psmt = conn.prepareStatement(SQL.SELECT_COUNT_TOTAL);
+			}else {
+				psmt = conn.prepareStatement(SQL.SELECT_COUNT_TOTAL_FOR_SEARCH);
+				psmt.setString(1, "%"+search+"%");
+			}
 			rs = psmt.executeQuery();
 			if(rs.next()) {
 				total=rs.getInt(1);

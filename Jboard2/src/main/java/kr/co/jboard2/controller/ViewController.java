@@ -31,10 +31,17 @@ public class ViewController extends HttpServlet {
 		String no = req.getParameter("no");
 		logger.debug(no);
 		
-		ArticleDTO article = service.selectArticle(no);
-		req.setAttribute("article", article);
 		
+		//글조회
+		ArticleDTO article = service.selectArticle(no);
+		
+		
+		
+		//댓글조회
 		List<ArticleDTO> comments = service.selectComments(no);
+		
+		req.setAttribute("no", no);
+		req.setAttribute("article", article);
 		req.setAttribute("comments", comments);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/view.jsp");

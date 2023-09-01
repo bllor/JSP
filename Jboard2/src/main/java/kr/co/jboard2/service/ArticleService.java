@@ -1,12 +1,17 @@
 package kr.co.jboard2.service;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +21,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import kr.co.jboard2.dao.ArticleDAO;
 import kr.co.jboard2.dto.ArticleDTO;
+import kr.co.jboard2.dto.FileDTO;
 
 public enum ArticleService {
 
@@ -33,14 +39,14 @@ public enum ArticleService {
 		return dao.selectArticle(no);
 		
 	}
-	public List<ArticleDTO> selectArticles(int start) {
-		return dao.selectArticles(start);
+	public List<ArticleDTO> selectArticles(int start,String search) {
+		return dao.selectArticles(start,search);
 	}
 	public void updateArticle() {
 		dao.updateArticle();
 	}
-	public void deleteArticle() {
-		dao.deleteArticle();
+	public void deleteArticle(String no) {
+		dao.deleteArticle(no);
 	}
 	
 	
@@ -81,9 +87,15 @@ public enum ArticleService {
 	dao.updateArticleForCommentPlus(no);
 	}
 	//댓글 입력
-	public void insertComment(ArticleDTO dto) {
-		dao.insertComment(dto);
+	public int insertComment(ArticleDTO dto) {
+		return dao.insertComment(dto);
 	}
+	
+	//댓글 삭제
+	public int deleteComment(String no) {
+		return dao.deleteComment(no);
+	}
+	
 	
 	//파일 업로드
 	public MultipartRequest uploadfile(HttpServletRequest req) {
@@ -103,13 +115,42 @@ public enum ArticleService {
 	}
 	
 	//파일 다운로드
-	public void downloadfile() {
+	public void downloadfile(HttpServletRequest req,HttpServletResponse resp,FileDTO dto) throws IOException {
+		// response 파일 다운로드 헤더 수정
+				resp.setContentType("application/octet-stream");
+				resp.setHeader("Content-Disposition", "attachment; filename="+URLEncoder.encode(dto.getOfile(),"utf-8"));
+				resp.setHeader("Content-Transfer-Encoding", "binary");
+				resp.setHeader("Pragma", "no-cache");
+				resp.setHeader("Cache-Control", "private");
+				
+				// response 파일 스트림 작업
+				String path = getFilePath(req);
+				
+				//파일명
+				File file = new File(path+"/"+dto.getSfile());
+				
+				
+				BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
+				BufferedOutputStream bos = new BufferedOutputStream(resp.getOutputStream());
+						
+				while(true){
+					
+					int data = bis.read();
+					if(data == -1){
+						break;
+					}
+					
+					bos.write(data);
+				}
+				
+				bos.close();
+				bis.close();
 		
 	}
 	
 	
-	public int selectCountTotal() {
-	return dao.selectCountTotal();	
+	public int selectCountTotal(String search) {
+	return dao.selectCountTotal(search);	
 	}
 	
 	// 페이지 마지막 번호
