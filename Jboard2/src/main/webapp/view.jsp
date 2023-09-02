@@ -87,7 +87,7 @@
  					
  					if(data.no >0){
  						
- 						$('#fromComment > textarea[name=content]').val('');//초기화
+ 						$('#formComment > textarea[name=content]').val('');//초기화
  						
  						//동적 화면 생성
  						
@@ -137,8 +137,10 @@
                      <c:if test="${article.file > 0}">
 		            <tr>
 		                <th>파일</th>
-		                <td><a href="/Jboard2/fileDownload.do?fno=${article.fileDto.fno }">${article.fileDto.ofile }</a>&nbsp;
-		                <span>${article.fileDto.download}</span>회 다운로드</td>
+		                <td>
+			                <a href="/Jboard2/fileDownload.do?fno=${article.fileDto.fno }">${article.fileDto.ofile }</a>&nbsp;
+			                <span>${article.fileDto.download}</span>회 다운로드
+			            </td>
 		                <!-- a태그라서 파일이 get형태로 넘어감 -->
 		            </tr>
 		            </c:if>
@@ -152,7 +154,7 @@
                 
                 <div>
                     <a href="/Jboard2/delete.do?no=${article.no}" class="btn btnRemove">삭제</a>
-                    <a href="./modify.do" class="btn btnModify">수정</a>
+                    <a href="./modify.do?no=${article.no}" class="btn btnModify">수정</a>
                     <a href="./list.do" class="btn btnList">목록</a>
                 </div>
 
@@ -175,11 +177,11 @@
                             -->
                         </div>
                     </article>
-	                    <c:if test="${comments.size() == 0}">
+	               </c:forEach>	
+                     	<c:if test="${comments.size() == 0}">
 			            	<p class="empty">등록된 댓글이 없습니다.</p>
 						</c:if>
-				</c:forEach>	
-                </section>
+				</section>
 
                 <!-- 댓글쓰기 -->
                 <section class="commentForm">
