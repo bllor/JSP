@@ -7,7 +7,7 @@
                 <form action="/Jboard2/modify.do" method ="POST">
                     <table border="0">
                     <input type="hidden" name ="no" value="${article.no}"/>
-                        <caption>글수정</caption>
+                     <caption>글수정</caption>
                         <tr>
                             <th>제목</th>
                             <td>
@@ -37,3 +37,10 @@
             </section>
         </main>
 <%@ include file="./_footer.jsp" %>
+
+
+
+
+
+
+

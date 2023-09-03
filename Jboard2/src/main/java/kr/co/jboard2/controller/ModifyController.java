@@ -49,6 +49,14 @@ public class ModifyController extends HttpServlet {
 		logger.debug("postTitle: "+title);
 		logger.debug("postContent: "+content);
 		
+		ArticleDTO dto = new ArticleDTO();
+		dto.setNo(no);
+		dto.setTitle(title);
+		dto.setContent(content);
+		
+		service.updateArticle(dto);
+		
+		resp.sendRedirect("./view.do?no="+no);
 	}
 	
 }

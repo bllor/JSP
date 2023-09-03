@@ -42,8 +42,8 @@ public enum ArticleService {
 	public List<ArticleDTO> selectArticles(int start,String search) {
 		return dao.selectArticles(start,search);
 	}
-	public void updateArticle() {
-		dao.updateArticle();
+	public void updateArticle(ArticleDTO dto) {
+		dao.updateArticle(dto);
 	}
 	public void deleteArticle(String no) {
 		dao.deleteArticle(no);
