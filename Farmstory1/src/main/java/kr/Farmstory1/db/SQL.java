@@ -93,9 +93,8 @@ public class SQL {
 	
 	public final static String SELECT_PRODUCT="select *from `Product` where `pNo`=?";
 	
-	//Order
-
-	public static final String INSERT_ORDER = "INSERT INTO `Order` SET "
+	// Order
+		public static final String INSERT_ORDER = "INSERT INTO `Order` SET "
 												+ "`orderProduct`=?,"
 												+ "`orderCount`=?,"
 												+ "`orderDelivery`=?,"
@@ -109,6 +108,18 @@ public class SQL {
 												+ "`orderEtc`=?,"
 												+ "`orderUser`=?,"
 												+ "`orderDate`=NOW()";
+		
+		public static final String SELECT_ORDERS = "SELECT "
+													+ "a.*,"
+													+ "b.`pName`,"
+													+ "b.`thumb1` "
+													+ "FROM `Order` AS a "
+													+ "JOIN `Product` AS b "
+													+ "ON a.orderProduct = b.pNo "
+													+ "LIMIT ?, 10";
+		
+		public static final String SELECT_COUNT_ORDERS = "SELECT COUNT(*) FROM `Order`";
+		public static final String DELETE_ORDER = "DELETE FROM `Order` WHERE `orderNo`=?";
 	
 	
 }

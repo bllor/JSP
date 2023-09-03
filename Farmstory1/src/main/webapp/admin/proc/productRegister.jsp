@@ -36,5 +36,5 @@
 	ProductDAO dao = new ProductDAO();
 	dao.insertProduct(dto);
 	
-	response.sendRedirect("../productRegister.jsp");
+	response.sendRedirect("../productList.jsp");
 %>
