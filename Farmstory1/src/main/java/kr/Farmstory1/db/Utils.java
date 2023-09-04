@@ -19,4 +19,8 @@ public class Utils {
 		return str.substring(0, length)+"...";
 	}
 	
+	public static String ellipsis(String str, int length) {
+		return str.substring(0, length)+"...";
+	}
+	
 }

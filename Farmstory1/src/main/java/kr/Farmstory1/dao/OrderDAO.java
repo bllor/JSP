@@ -36,7 +36,11 @@ public class OrderDAO extends DBhelper {
 		return null;
 	}
 	
+<<<<<<< Updated upstream
 	public List<OrderDTO> selectOrders(int start) {
+=======
+public List<OrderDTO> selectOrders(int start) {
+>>>>>>> Stashed changes
 		
 		List<OrderDTO> orders = new ArrayList<OrderDTO>();
 		
@@ -110,5 +114,22 @@ public class OrderDAO extends DBhelper {
 		return total;
 	}
 	
-	
+	public int selectCountOrders() {
+		int total = 0;
+		
+		try {
+			conn = getconnection();
+			psmt = conn.prepareStatement(SQL.SELECT_COUNT_ORDERS);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+			close();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return total;
+	}
 }

@@ -7,9 +7,9 @@
 <%@page import="vo.User1VO" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	String host ="jdbc:mysql://127.0.0.1:3306/userdb";
-	String user ="root";
-	String pass ="1234";
+	String host ="jdbc:mysql://13.209.15.113:3306/userdb";
+	String user ="userdb";
+	String pass ="1234qweR!";
 
 	List<User1VO> users = new ArrayList<>();
 	

@@ -141,8 +141,8 @@ public class MemberDAO {
 			
 			
 		} catch (Exception e) {
-			// TODO: handle exception
-		}
+			logger.error("Member updateMember error : "+e.getMessage());
+				}
 		
 	}
 	public void deleteMember(String uid) {

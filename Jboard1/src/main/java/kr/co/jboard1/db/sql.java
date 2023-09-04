@@ -48,7 +48,7 @@ public class sql {
 	
 	
 	
-	public static final String SELECTE_COUNT_TOTAL="SELECT COUNT(*)FROM `Aticle` where `parent`=0" ;
+	public static final String SELECTE_COUNT_TOTAL="SELECT COUNT(*)FROM `Article` where `parent`=0" ;
 	//최신 글이 상단에 출력하기 위해서 order by를 추가하고,
 	//아이디를 닉네임으로 바꾸기 위해서 user를 조인하여 아이디를 가져온다.
 	
