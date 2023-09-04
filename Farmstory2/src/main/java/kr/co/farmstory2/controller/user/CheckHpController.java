@@ -16,7 +16,7 @@ import com.google.gson.JsonObject;
 
 import kr.co.farmstory2.service.UserService;
 
-@WebServlet("/user/checkUid.do")
+@WebServlet("/user/checkHp.do")
 public class CheckHpController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

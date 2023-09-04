@@ -1,18 +1,18 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
         <div id="sub">
-            <div><img src="/Farmstory2/images/sub_top_tit2.png" alt="MARKET"></div>
+            <div><img src="${ctxPath}/images/sub_top_tit2.png" alt="MARKET"></div>
             <section class="market">
                 <aside>
-                    <img src="/Farmstory2/images/sub_aside_cate2_tit.png" alt="장보기"/>
+                    <img src="${ctxPath}/images/sub_aside_cate2_tit.png" alt="장보기"/>
 
                     <ul class="lnb">
-                        <li class="on"><a href="/Farmstory2/market/list.do">장보기</a></li>
+                        <li class="on"><a href="${ctxPath}/market/list.do">장보기</a></li>
                     </ul>
                 </aside>
                 <article class="list">
                     <nav>
-                        <img src="/Farmstory2/images/sub_nav_tit_cate2_tit1.png" alt="장보기"/>
+                        <img src="${ctxPath}/images/sub_nav_tit_cate2_tit1.png" alt="장보기"/>
                         <p>
                             HOME > 장보기 > <em>장보기</em>
                         </p>
@@ -28,7 +28,7 @@
                     <table border="0">
                         <tr>
                             <td>
-                                <a href="./view.html"><img src="/Farmstory2/images/market_item1.jpg" alt="사과 500g"></a>
+                                <a href="./view.html"><img src="${ctxPath}/images/market_item1.jpg" alt="사과 500g"></a>
                             </td>
                             <td>과일</td>
                             <td><a href="#">사과 500g</a></td>
@@ -36,7 +36,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="./view.html"><img src="/Farmstory2/images/market_item2.jpg" alt="배 5kg"></a>
+                                <a href="./view.html"><img src="${ctxPath}/images/market_item2.jpg" alt="배 5kg"></a>
                             </td>
                             <td>과일</td>
                             <td><a href="#">배 5kg</a></td>
@@ -44,7 +44,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="./view.html"><img src="/Farmstory2/images/market_item3.jpg" alt="방울토마토"></a>
+                                <a href="./view.html"><img src="${ctxPath}/images/market_item3.jpg" alt="방울토마토"></a>
                             </td>
                             <td>야채</td>
                             <td><a href="#">방울토마토</a></td>
@@ -52,7 +52,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="./view.html"><img src="/Farmstory2/images/market_item4.jpg" alt="딸기 500g"></a>
+                                <a href="./view.html"><img src="${ctxPath}/images/market_item4.jpg" alt="딸기 500g"></a>
                             </td>
                             <td>과일</td>
                             <td><a href="#">딸기 500g</a></td>
@@ -60,7 +60,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="./view.html"><img src="/Farmstory2/images/market_item5.jpg" alt="ㅊ"></a>
+                                <a href="./view.html"><img src="${ctxPath}/images/market_item5.jpg" alt="ㅊ"></a>
                             </td>
                             <td>과일</td>
                             <td><a href="#">오렌지</a></td>
@@ -68,7 +68,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="./view.html"><img src="/Farmstory2/images/market_item6.jpg" alt="무농약현미"></a>
+                                <a href="./view.html"><img src="${ctxPath}/images/market_item6.jpg" alt="무농약현미"></a>
                             </td>
                             <td>곡류</td>
                             <td><a href="#">무농약현미</a></td>
@@ -76,7 +76,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="./view.html"><img src="/Farmstory2/images/market_item7.jpg" alt="팜스토리 하루야채 샐러드"></a>
+                                <a href="./view.html"><img src="${ctxPath}/images/market_item7.jpg" alt="팜스토리 하루야채 샐러드"></a>
                             </td>
                             <td>야채</td>
                             <td><a href="#">팜스토리 하루야채 샐러드</a></td>
@@ -84,7 +84,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="./view.html"><img src="/Farmstory2/images/market_item8.jpg" alt="바나나"></a>
+                                <a href="./view.html"><img src="${ctxPath}/images/market_item8.jpg" alt="바나나"></a>
                             </td>
                             <td>과일</td>
                             <td><a href="#">바나나</a></td>

@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
+<script src="${ ctxPath}/js/zipcode.js"></script>
+<script src="${ ctxPath}/js/validation.js"></script>
+<script src="${ ctxPath}/js/checkUser.js"></script>
 
 <div id="user">
             <section id="user" class="register">

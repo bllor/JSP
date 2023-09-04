@@ -71,6 +71,86 @@ $(function(){
 			}
 			
 		});//닉네임 중복 체크 끝
+	});	
+	//이메일 중복 체크
+	document.getElementsByName('email')[0].onfocusout = function(){
+		const resultEmail = document.getElementById('resultEmail');
 		
-	});
+		//입력 데이터 가져오기
+		const email = this.value;
+		
+		if(!email.match(reEmail)){
+			resultEmail.innerText = '유효한 이메일이 아닙니다.';
+			resultEmail.style.color= 'red';
+			isEmailOk = false;
+			return;
+		}
+		
+		//데이터 전송
+		const xhr = new XMLHttpRequest();
+		xhr.open('GET', '/Farmstory2/user/checkEmail.do?email='+email);
+		xhr.send();
+		
+		//응답 결과
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == xXMLHttpRequest.DONE){
+				if(xhr.status == 200){
+					const data = JSON.parse(xhr.response);
+					console.log('data : '+data);
+					
+					if(data.result >=1 ){
+						resultEmail.innerText = '이미 사용중인 이메일 입니다.';
+						resultEmail.style.color= 'red';
+						isEmailOk = false;
+					}else{
+						resultEmail.innerText='사용 가능한 이메일 입니다.';
+						resultEmail.style.color='green';
+						isEmailOk = true;
+					}
+					
+				}
+			}
+			
+		}
+		
+	};
+		
+	//휴대폰 중복체크
+	document.getElementsByName('hp')[0].addEventListener('focusout',function(){
+		
+		const resultHp = document.getElementById('.resultHp');
+		const hp = this.value;
+		
+		
+		if(!hp.match(reHp)){
+			resultHp.innerText='유효한 휴대폰 번호가 아닙니다.';
+			resultHp.style.color='red';
+			isHpOk = false;
+			return;
+		}
+		
+		const url = '/Farmstory2/user/checkHp.do?hp='+this.value;
+		
+		fetch(url)
+					.then(response => response,json())
+					.then(data => {
+						
+						console.log(data);
+						
+						if(data.result >= 1){
+							resultHp.innerText='이미 사용중인 휴대폰 번호입니다.';
+							resultHp.style.color='red';
+							inHpOk = false;
+						}else{
+							resultHp.innerText='사용 가능한 휴대폰 번호입니다.';
+							resultHp.style.color='green';
+							isHpOk = true;
+						}
+						
+					});
+		
+		
+	});//end
+	
+	
 });
