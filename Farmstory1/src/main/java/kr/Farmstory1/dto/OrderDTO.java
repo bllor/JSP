@@ -17,30 +17,12 @@ public class OrderDTO {
 	private String orderUser;
 	private String orderDate;
 	
-<<<<<<< Updated upstream
 	// 추가필드
+	
+	
 	private String pName;
 	private String thumb1;
 	
-	public String getpName() {
-		return pName;
-	}
-	public void setpName(String pName) {
-		this.pName = pName;
-	}
-	
-	public String getThumb1() {
-		return thumb1;
-	}
-	public void setThumb1(String thumb1) {
-		this.thumb1 = thumb1;
-	}
-	
-=======
-	private String pName;
-	private String thumb1;
-	
->>>>>>> Stashed changes
 	public int getOrderNo() {
 		return orderNo;
 	}

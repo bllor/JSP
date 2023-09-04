@@ -1,5 +1,4 @@
 <%@page import="kr.Farmstory1.db.Utils"%>
-<<<<<<< Updated upstream
 <%@page import="kr.Farmstory1.dao.OrderDAO"%>
 <%@page import="kr.Farmstory1.dto.OrderDTO"%>
 <%@page import="java.util.List"%>
@@ -12,20 +11,7 @@
 	OrderDAO dao = new OrderDAO();
 	
 	// 페이지 관련 변수 선언
-=======
-<%@page import="kr.Farmstory1.dto.OrderDTO"%>
-<%@page import="java.util.List"%>
-<%@page import="kr.Farmstory1.dao.OrderDAO"%>
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="./_header.jsp" %>
-<%
-
-	request.setCharacterEncoding("UTF-8");
-	String pg = request.getParameter("pg");
 	
-	OrderDAO dao = new OrderDAO();
-	
->>>>>>> Stashed changes
 	int start = 0;
 	int currentPage = 1;
 	int total = 0;
@@ -35,7 +21,6 @@
 	int pageGroupEnd = 0;
 	int pageStartNum = 0;
 	
-<<<<<<< Updated upstream
 	// 현재 페이지 계산
 	if(pg != null){
 		currentPage = Integer.parseInt(pg);
@@ -58,7 +43,6 @@
 	pageGroupCurrent = (int) Math.ceil(currentPage / 10.0);
 	pageGroupStart = (pageGroupCurrent - 1) * 10 + 1;
 	pageGroupEnd = pageGroupCurrent * 10;
-=======
 	//현재 페이지 계산
 	if(pg != null){
 		currentPage = Integer.parseInt(pg);
@@ -81,23 +65,17 @@
 	pageGroupCurrent = (int)Math.ceil(currentPage/10.0);
 	pageGroupStart = (pageGroupCurrent -1)*10+1;
 	pageGroupEnd = pageGroupCurrent*10;
->>>>>>> Stashed changes
 	
 	if(pageGroupEnd > lastPageNum){
 		pageGroupEnd = lastPageNum;
 	}
 	
 	List<OrderDTO> orders = dao.selectOrders(start);
-<<<<<<< Updated upstream
-=======
-	
->>>>>>> Stashed changes
 %>
 <script>
 
 	$(function(){
 		
-<<<<<<< Updated upstream
 		
 		$('input[name=all]').change(function(){
 			const isChecked = $(this).is(':checked');
@@ -120,9 +98,8 @@
 	});
 	
 
-</script>
 
-=======
+
 			$('input[name=all]').change(function(){
 				
 				const isChecked = $(this).is(':checked');
@@ -140,7 +117,6 @@
 	});
 
 </script>
->>>>>>> Stashed changes
 <main>
     <%@ include file="./_aside.jsp" %>
     <section id="orderList">
