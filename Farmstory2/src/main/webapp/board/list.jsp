@@ -16,21 +16,29 @@
 			                <th>날짜</th>
 			                <th>조회</th>
 			            </tr>
+			            <c:forEach var ="article" items="${requestScope.articles }">
 			            <tr>
-			                <td>1</td>
-			                <td><a href="./view.do?group=${group}&cate=${cate}">제목입니다.</a>&nbsp;[3]</td>
-			                <td>길동이</td>
-			                <td>23-09-04</td>
-			                <td>12</td>
+			                <td>${pageStartNum = pageStartNum -1}</td>
+			                <td><a href="${ctxPath}/board/view.do?group=${group}&cate=${cate}&no=${article.no}">${article.getTitle() }</a>&nbsp;[${article.comment }]</td>
+			                <td>${article.getNick() }</td>
+			                <td>${article.getRdate() }</td>
+			                <td>${article.getHit()}</td>
 			            </tr>
+			            </c:forEach>
 			        </table>
 			    </article>
 			
 			    <!-- 페이지 네비게이션 -->
 		        <div class="paging">
-		            <a href="#" class="prev">이전</a>
-		            <a href="#" class="num current">1</a>
-		            <a href="#" class="next">다음</a>
+		        <c:if test="${pageGroupStart >1 }">
+		            <a href="${ctxPath }/board/list.do?pg=${pageGroupStart-1}&group=${group}&cate=${cate}" class="prev">이전</a>
+		        </c:if>
+		        <c:forEach var="i" begin="${pageGroupStart}" end="${pageGroupEnd }">
+		            <a href="${ctxPath}/board/list.do?pg=${i}&group=${group}&cate=${cate}" class="num ${currentPage==i?'current':'off'}">${i }</a>
+		        </c:forEach>
+		        <c:if test ="${pageGroupEnd < lastPageNum }">
+		            <a href="${ctxPath}/board/list.do?pg=${pageGroupEnd+1}&group=${group}&cate=${cate}" class="next">다음</a>
+		       </c:if>     
 		        </div>
 			
 			    <!-- 글쓰기 버튼 -->

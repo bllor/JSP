@@ -2,6 +2,7 @@ package kr.co.farmstory2.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -28,16 +29,16 @@ public class ArticleService {
 	
 	private ArticleDAO dao = ArticleDAO.getInstance();
 	
-	public void insertArticle(ArticleDTO dto) {
-		dao.insertArticle(dto);
+	public int insertArticle(ArticleDTO dto) {
+		return dao.insertArticle(dto);
 	}
 	
-	public void selectArticle() {
-		
+	public ArticleDTO selectArticle(String no) {
+		return dao.selectArticle(no);
 	}
 	
-	public void selectArticles() {
-		
+	public List<ArticleDTO> selectArticles(String cate, int start) {
+		return dao.selectArticles(cate, start);
 	}
 	
 	public void updateArticle() {
@@ -66,9 +67,9 @@ public class ArticleService {
 		MultipartRequest mr = null;
 		
 		try {
-			mr = new MultipartRequest(req, path,maxSize,"UTF-8", new DefaultFileRenamePolicy());
+			mr = new MultipartRequest(req,path,maxSize,"UTF-8", new DefaultFileRenamePolicy());
 		} catch (IOException e) {
-			logger.info("uploadFile : "+e.getMessage());
+			logger.error("uploadFile : "+e.getMessage());
 		}
 		
 		return mr;
@@ -90,6 +91,61 @@ public class ArticleService {
 		f1.renameTo(f2);
 		
 		return sName;
+	}
+	
+	//페이지 시작 번호
+	public int getPageStartNum(int total, int currentPage) {
+		int start = (currentPage -1)*10;
+		return total - start;
+		
+	}
+	
+	//현재 페이지 번호
+	public int getCurrentPage(String pg) {
+		int currentPage =1;
+		
+		if(pg != null) {
+			currentPage = Integer.parseInt(pg);
+		}
+		
+		return currentPage;
+	}
+	
+	//페이지 마지막 번호
+	public int getLastPageNum(int total) {
+		int lastPageNum = 0;
+		
+		if(total % 10==0) {
+			lastPageNum = total/10;
+		}else {
+			lastPageNum = total/10+1;
+		}
+		return lastPageNum;
+	}
+	
+	//Limit 시작번호
+	public int getStartNum(int currentPage) {
+		return (currentPage-1)*10;
+	}
+	
+	//전체 게시물 조회
+	public int selectCountTotal(String cate) {
+		return dao.selectCountTotal(cate);
+	}
+	
+	//페이지 그룹
+	public int[]getPageGroupNum(int currentPage, int lastPageNum){
+		
+		int currentPageGroup = (int)Math.ceil(currentPage/10.0);
+		int pageGroupStart = (currentPageGroup -1)*10+1;
+		int pageGroupEnd = currentPageGroup * 10;
+		
+		if(pageGroupEnd > lastPageNum) {
+			pageGroupEnd = lastPageNum;
+		}
+		int[] result = {pageGroupStart,pageGroupEnd};
+		return result;
+		
 	}
 	
 }

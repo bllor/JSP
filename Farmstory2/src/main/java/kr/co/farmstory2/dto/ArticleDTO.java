@@ -1,5 +1,6 @@
 package kr.co.farmstory2.dto;
 
+
 public class ArticleDTO {
 
 	private int no;
@@ -16,6 +17,7 @@ public class ArticleDTO {
 	
 	// 추가필드
 	private String nick;
+	private FileDTO fileDto;
 	
 	public String getNick() {
 		return nick;
@@ -69,6 +71,16 @@ public class ArticleDTO {
 	public int getFile() {
 		return file;
 	}
+	
+	//oName추가
+	public void setFile(String oName) {
+		if(oName != null) {
+			
+			this.file=1;
+		}else {
+			this.file=0;
+		}
+	}
 	public void setFile(int file) {
 		this.file = file;
 	}
@@ -98,5 +110,12 @@ public class ArticleDTO {
 	}
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
+	}
+	
+	public FileDTO getFileDto() {
+		return fileDto;
+	}
+	public void setFileDto(FileDTO fileDto) {
+		this.fileDto = fileDto;
 	}
 }

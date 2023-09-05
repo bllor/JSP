@@ -4,10 +4,10 @@
 			<section class="write">
 			    <h3>글쓰기</h3>
 			    <article>
-			        <form action="${ctxPath}/board/write.do" method="post">
-			        	<input type ="text" name ="writer" value="${sessUser.uid }">
-			        	<input type ="text" name ="group" value="${group}">
-			        	<input type ="text" name ="cate" value="${cate}">
+			        <form action="${ctxPath}/board/write.do" method="post" enctype="multipart/form-data">
+			        	<input type ="hidden" name ="writer" value="${sessUser.uid }">
+			        	<input type ="hidden" name ="group" value="${group}">
+			        	<input type ="hidden" name ="cate" value="${cate}">
 			        	<table>
 			                <tr>
 			                    <td>제목</td>

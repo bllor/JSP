@@ -31,6 +31,7 @@ public class SQL {
 												+ "`cate`=?, "
 												+ "`title`=?, "
 												+ "`content`=?,"
+												+ "`file`=?,"
 												+ "`writer`=?,"
 												+ "`regip`=?,"
 												+ "`rdate`=NOW()";
@@ -74,7 +75,7 @@ public class SQL {
 
 	public final static String DELETE_ARTICLE = "DELETE FROM `Article` WHERE `no`=? OR `parent`=?";
 	public final static String DELETE_COMMENT = "DELETE FROM `Article` WHERE `no`=?";
-	
+	public final static String SELECT_MAX_NO = "SELECT MAX(`no`) From `Article`";
 	
 	// Product
 	public final static String INSERT_PRODUCT = "INSERT INTO `Product` SET "
@@ -125,5 +126,11 @@ public class SQL {
 		public static final String SELECT_COUNT_ORDERS = "SELECT COUNT(*) FROM `Order`";
 		public static final String DELETE_ORDER = "DELETE FROM `Order` WHERE `orderNo`=?";
 	
-	
+	//File
+	public static final String INSERT_FILE = "INSERT INTO `File` set "
+											+"`ano`=? ,"
+											+"`ofile`=? ,"
+											+"`sfile`=? ,"
+											+"`rdate`=NOW() ";
+											
 }

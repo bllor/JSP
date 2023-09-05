@@ -10,8 +10,7 @@
 	String cate = request.getParameter("cate");
 	
 	ArticleDTO dto = new ArticleDTO();
-	ArticleDAO dao = new ArticleDAO();
-	
+	ArticleDAO dao = ArticleDAO.getInstance();
 	dao.deleteArticle(no);
 	
 	response.sendRedirect("/Farmstory1/board/list.jsp?group="+group+"&cate="+cate);
