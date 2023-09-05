@@ -40,7 +40,7 @@ public class RegisterController extends HttpServlet {
 		String zip = req.getParameter("zip");
 		String addr1 = req.getParameter("addr1");
 		String addr2 = req.getParameter("addr2");
-		String regip = req.getParameter("regip");
+		String regip = req.getRemoteAddr();
 		
 		UserDTO dto = new UserDTO();
 		dto.setUid(uid);

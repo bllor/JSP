@@ -44,10 +44,11 @@ $(function(){
 	
 	
 	//닉네임 중복체크
-	$('input[name=nick]').focusout(function(){
+	$('#btnCheckNick').click(function(){
 		
 		//입력 데이터 가져오기
-		const nick = $(this).val();
+		const nick = $('input[name=nick]').val();
+		console.log(nick);
 		
 		if(!nick.match(reNick)){
 			$('.resultNick').css('color','red').text('유효한 닉네임이 아닙니다.');
@@ -61,8 +62,8 @@ $(function(){
 		};
 		
 		//데이터 전송
-		$.get('/Farmstory2/user/checkNick.do',jsonData, function(data){
-			if(data.result>1){
+		$.getJSON('/Farmstory2/user/checkNick.do',jsonData, function(data){
+			if(data.result>0){
 				$('.resultNick').css('color','red').text('이미 사용중인 닉네임 입니다.');
 				isNickOk = false;
 			}else{
@@ -70,8 +71,10 @@ $(function(){
 				isNickOk = true;
 			}
 			
-		});//닉네임 중복 체크 끝
-	});	
+		});
+	});//닉네임 중복 체크 끝
+	
+		
 	//이메일 중복 체크
 	document.getElementsByName('email')[0].onfocusout = function(){
 		const resultEmail = document.getElementById('resultEmail');
@@ -93,12 +96,12 @@ $(function(){
 		
 		//응답 결과
 		xhr.onreadystatechange = function(){
-			if(xhr.readyState == xXMLHttpRequest.DONE){
+			if(xhr.readyState == XMLHttpRequest.DONE){
 				if(xhr.status == 200){
 					const data = JSON.parse(xhr.response);
 					console.log('data : '+data);
 					
-					if(data.result >=1 ){
+					if(data.result >0 ){
 						resultEmail.innerText = '이미 사용중인 이메일 입니다.';
 						resultEmail.style.color= 'red';
 						isEmailOk = false;
@@ -118,7 +121,7 @@ $(function(){
 	//휴대폰 중복체크
 	document.getElementsByName('hp')[0].addEventListener('focusout',function(){
 		
-		const resultHp = document.getElementById('.resultHp');
+		const resultHp = document.getElementById('resultHp');
 		const hp = this.value;
 		
 		
@@ -132,12 +135,12 @@ $(function(){
 		const url = '/Farmstory2/user/checkHp.do?hp='+this.value;
 		
 		fetch(url)
-					.then(response => response,json())
+					.then(response => response.json())
 					.then(data => {
 						
 						console.log(data);
 						
-						if(data.result >= 1){
+						if(data.result > 0){
 							resultHp.innerText='이미 사용중인 휴대폰 번호입니다.';
 							resultHp.style.color='red';
 							inHpOk = false;

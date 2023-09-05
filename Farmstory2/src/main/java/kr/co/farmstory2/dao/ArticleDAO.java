@@ -9,6 +9,12 @@ import kr.co.farmstory2.dto.ArticleDTO;
 
 public class ArticleDAO extends DBhelper{
 
+	private static ArticleDAO instance = new ArticleDAO();
+	public static ArticleDAO getInstance() {
+		return instance;
+	}
+	private ArticleDAO() {}
+	
 	// 기본 CRUD
 		public void insertArticle(ArticleDTO dto) {
 			try {

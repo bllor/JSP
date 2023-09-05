@@ -30,6 +30,8 @@ public class CheckEmailController extends HttpServlet {
 		String email = req.getParameter("email");
 		logger.debug("email : "+email);
 		int result = service.selectCountEmail(email);
+		logger.debug("Emailresult : "+result);
+		
 		
 		//json생성
 		JsonObject json = new JsonObject();

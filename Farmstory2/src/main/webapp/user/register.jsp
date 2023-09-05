@@ -50,7 +50,7 @@
                             <td>
                                 <p>공백없이 한글, 영문, 숫자만 입력가능</p>
                                 <input type="text" name="nick" placeholder="별명 입력"/>
-                                <button type="button" id ="btnCheckUid"> 
+                                <button type="button" id ="btnCheckNick"> 
                                     <img src="${ctxPath}/images/chk_id.gif" alt="별명">
                                 </button>
                                 <span class="resultNick"></span>

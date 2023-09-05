@@ -34,7 +34,7 @@
 		        </div>
 			
 			    <!-- 글쓰기 버튼 -->
-			    <a href="./write.do?group=${group}&cate=${cate}" class="btnWrite">글쓰기</a>
+			    <a href="${ctxPath}/board/write.do?group=${group}&cate=${cate}" class="btnWrite">글쓰기</a>
 			</section>
 			<!-- 내용 끝 -->
 

@@ -30,6 +30,7 @@ public class CheckNickController extends HttpServlet {
 		String nick = req.getParameter("nick");
 		logger.debug("nick : "+nick);
 		int result = service.selectCountNick(nick);
+		logger.debug("result : "+result);
 		
 		//json생성
 		JsonObject json = new JsonObject();

@@ -1,13 +1,5 @@
 <%@page import="kr.co.farmstory2.dto.UserDTO"%>
 <%@ page  contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<%	
-	request.setCharacterEncoding("UTF-8");
-	String success = request.getParameter("success");	
-
-	UserDTO sessUser = (UserDTO)session.getAttribute("sessUser");
-	
-	
-%>
  <%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 개발/배포에서 ContextPath 포함 여부에 따른 동적처리 -->
 <c:set var="ctxPath" value="${pageContext.request.contextPath}"></c:set>

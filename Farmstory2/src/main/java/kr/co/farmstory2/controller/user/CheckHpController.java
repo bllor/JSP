@@ -30,6 +30,7 @@ public class CheckHpController extends HttpServlet {
 		String hp = req.getParameter("hp");
 		logger.debug("hp: "+hp);
 		int result = service.selectCountHp(hp);
+		logger.debug("hpResult: "+result);
 		
 		
 		//json생성
