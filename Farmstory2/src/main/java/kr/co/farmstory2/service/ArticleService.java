@@ -1,12 +1,17 @@
 package kr.co.farmstory2.service;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +21,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import kr.co.farmstory2.dao.ArticleDAO;
 import kr.co.farmstory2.dto.ArticleDTO;
+import kr.co.farmstory2.dto.FileDTO;
 
 public class ArticleService {
 
@@ -93,6 +99,40 @@ public class ArticleService {
 		return sName;
 	}
 	
+	
+	//파일 다운로드
+	public void downloadfile(HttpServletRequest req,HttpServletResponse resp,FileDTO dto) throws IOException {
+		
+		// response 파일 다운로드 헤더 수정
+		resp.setContentType("application/octet-stream");
+		resp.setHeader("Content-Disposition", "attachment; filename="+URLEncoder.encode(dto.getOfile(),"utf-8"));
+		resp.setHeader("Content-Transfer-Encoding", "binary");
+		resp.setHeader("Pragma", "no-cache");
+		resp.setHeader("Cache-Control", "private");
+		
+		//response 파일 스트림 작업
+		String path = getFilePath(req);
+		
+		//파일명
+		File file = new File(path+"/"+dto.getSfile());
+		
+		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
+		BufferedOutputStream bos = new BufferedOutputStream(resp.getOutputStream());
+		
+		while(true) {
+			
+			int data = bis.read();
+			if(data==1) {
+				break;
+			}
+			
+			bos.write(data);
+		}
+		
+		bis.close();
+		bos.close();
+	}
+	
 	//페이지 시작 번호
 	public int getPageStartNum(int total, int currentPage) {
 		int start = (currentPage -1)*10;
@@ -147,5 +187,15 @@ public class ArticleService {
 		return result;
 		
 	}
+	//댓글 삽입
+	public void insertComment(ArticleDTO dto) {
+		dao.insertComment(dto);
+	}
+	
+	//댓글 조회
+	public List<ArticleDTO> selectComments(String no) {
+		return dao.selectComments(no);
+	}
+	
 	
 }

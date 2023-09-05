@@ -38,6 +38,7 @@ public class SQL {
 	
 	public final static String INSERT_COMMENT = "INSERT INTO `Article` SET "
 												+ "`parent`=?, "
+												+ "`cate`=?,"
 												+ "`content`=?,"
 												+ "`writer`=?,"
 												+ "`regip`=?,"
@@ -47,7 +48,9 @@ public class SQL {
 												+ "WHERE `parent`=0 AND `cate`=? "
 												+ "Order BY `no` DESC LIMIT ?";
 	
-	public final static String SELECT_ARTICLE = "SELECT * FROM `Article` WHERE `no`=?";
+	public final static String SELECT_ARTICLE = "SELECT * FROM `Article` AS a "
+												+"LEFT JOIN `File` AS b ON a.no = b.ano "
+												+"where no=? and parent = 0";
 	public final static String SELECT_ARTICLES = "SELECT "
 												+ "a.*, "
 												+ "b.`nick` "
@@ -132,5 +135,7 @@ public class SQL {
 											+"`ofile`=? ,"
 											+"`sfile`=? ,"
 											+"`rdate`=NOW() ";
+	public static final String SELECT_FILE ="SELECT * FROM `File` where fno=?";
+	
 											
 }

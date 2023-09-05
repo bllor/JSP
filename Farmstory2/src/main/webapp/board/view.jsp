@@ -1,5 +1,18 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
+<script>
+$(function(){
+	//댓글 입력
+	$('.btnWrite').click(function(e){
+		e.preventDefault();
+		
+		alert('댓글입력');
+		
+	});//insert end
+	
+});
+
+</script>
 <jsp:include page="./_aside${group}.jsp"/>
 			<section class="view">
 			    <h3>글보기</h3>
@@ -9,11 +22,13 @@
 			            <td><input type="text" name="title" value="${article.title }" readonly/></td>
 			        </tr>
 			        <tr>
+			        	<c:if test="${article.file>0}">
 			            <td>첨부파일</td>
 			            <td>
-			                <a href="#">2020년 상반기 매출자료.xls</a>
-			                <span>7회 다운로드</span>
+			                <a href="${ctxPath}/board/fileDownload.do?fno=${article.fileDto.fno}">${article.fileDto.ofile }</a>
+			                <span>${article.fileDto.download }회 다운로드</span>
 			            </td>
+			            </c:if>
 			        </tr>
 			        <tr>
 			            <td>내용</td>
@@ -31,13 +46,14 @@
 			    <!-- 댓글리스트 -->
 			    <section class="commentList">
 			        <h3>댓글목록</h3>
+			        <c:forEach var ="comment" items="${comments }">
 			        <article class="comment">
 			        	<form action="#" method="post">
 							<span>
-								<span>닉네임</span>
-								<span>23-09-04</span>
+								<span>${comment.nick }</span>
+								<span>${comment.rdate}</span>
 							</span>
-							<textarea name="comment" readonly>댓글내용</textarea>
+							<textarea name="comment" readonly>${comment.content}</textarea>
 			             
 							<div>
 								<a href="#" class="del">삭제</a>
@@ -46,13 +62,20 @@
 							</div>                
 			            </form>
 			        </article>
+			        </c:forEach>
+			        <c:if test="${comments.size()==0}">  
 			        <p class="empty">등록된 댓글이 없습니다.</p>
+			    	</c:if>
 			    </section>
 			
 			    <!-- 댓글입력폼 -->
 			    <section class="commentForm">
 			        <h3>댓글쓰기</h3>
-			        <form action="#" method="post">
+			        <form action="${ctxPath }/board/comment.do" method="post">
+			        		<input type="hidden" name= "no" value="${article.no}">
+			        		<input type="hidden" name= "uid" value="${sessUser.uid}">
+			        		<input type="hidden" name = "group" value="${group}">
+			        		<input type="hidden" name = "cate" value="${cate}">
 			            <textarea name="content"></textarea>
 			            <div>
 			                <a href="#" class="btnCancel">취소</a>

@@ -11,4 +11,8 @@ public enum FileService {
 	public void insertFile(FileDTO filedto) {
 		dao.insertFile(filedto);
 	}
+	
+	public FileDTO selectFile(String fno) {
+		return dao.selectFile(fno);
+	}
 }

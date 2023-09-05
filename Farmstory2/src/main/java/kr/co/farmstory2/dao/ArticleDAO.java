@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import kr.co.farmstory2.db.DBhelper;
 import kr.co.farmstory2.db.SQL;
 import kr.co.farmstory2.dto.ArticleDTO;
+import kr.co.farmstory2.dto.FileDTO;
 
 public class ArticleDAO extends DBhelper{
 
@@ -77,10 +78,19 @@ public class ArticleDAO extends DBhelper{
 					dto.setWriter(rs.getString("writer"));
 					dto.setRegip(rs.getString("regip"));
 					dto.setRdate(rs.getString("rdate"));
+					
+					FileDTO fileDto = new FileDTO();
+					fileDto.setFno(rs.getInt(12));
+					fileDto.setAno(rs.getInt(13));
+					fileDto.setOfile(rs.getString(14));
+					fileDto.setSfile(rs.getString(15));
+					fileDto.setDownload(rs.getInt(16));
+					fileDto.setRdate(rs.getString(17));
+					dto.setFileDto(fileDto);
 				}
 				close();
 			}catch (Exception e) {
-				e.printStackTrace();
+				logger.error("selectArticle : "+e.getMessage());
 			}
 			
 			return dto;
