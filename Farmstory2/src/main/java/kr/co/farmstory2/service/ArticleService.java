@@ -47,8 +47,8 @@ public class ArticleService {
 		return dao.selectArticles(cate, start);
 	}
 	
-	public void updateArticle() {
-		
+	public void updateArticle(ArticleDTO dto) {
+		 dao.updateArticle(dto);
 	}
 	
 	public void deleteArticle() {
@@ -59,7 +59,7 @@ public class ArticleService {
 	public String getFilePath(HttpServletRequest req) {
 		//파일 업로드 경로 구하기
 		ServletContext ctx = req.getServletContext();
-		String path = ctx.getRealPath("/thumb");
+		String path = ctx.getRealPath("/upload");
 		return path;
 	}
 	
@@ -188,8 +188,8 @@ public class ArticleService {
 		
 	}
 	//댓글 삽입
-	public void insertComment(ArticleDTO dto) {
-		dao.insertComment(dto);
+	public int insertComment(ArticleDTO dto) {
+		return dao.insertComment(dto);
 	}
 	
 	//댓글 조회
@@ -197,5 +197,15 @@ public class ArticleService {
 		return dao.selectComments(no);
 	}
 	
+	
+	//댓글 삭제
+	public int deleteComment(String no) {
+		return dao.deleteComment(no);
+	}
+	
+	//댓글 업데이트
+	public int updateComment(String no , String content) {
+		 return dao.updateComment(no, content);
+	}
 	
 }

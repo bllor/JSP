@@ -132,17 +132,20 @@ public class ArticleDAO extends DBhelper{
 		}
 		
 		public void updateArticle(ArticleDTO dto) {
+			logger.debug(dto.toString());
 			try {
 				conn = getConnection();
 				psmt = conn.prepareStatement(SQL.UPDATE_ARTICLE);
 				psmt.setString(1, dto.getTitle());
 				psmt.setString(2, dto.getContent());
-				psmt.setInt(3, dto.getNo());
+				psmt.setInt(3, dto.getFile());
+				psmt.setInt(4, dto.getNo());
 				psmt.executeUpdate();
 				close();
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
+
 		}
 		
 		public void deleteArticle(String no) {
@@ -246,10 +249,14 @@ public class ArticleDAO extends DBhelper{
 			return comments;
 		}
 		
-		public void insertComment(ArticleDTO dto) {
+		public int insertComment(ArticleDTO dto) {
+			int no = 0;
 			
 			try {
 				conn = getConnection();
+				conn.setAutoCommit(false);
+				stmt = conn.createStatement();
+				
 				psmt = conn.prepareStatement(SQL.INSERT_COMMENT);
 				psmt.setInt(1, dto.getParent());
 				psmt.setString(2, dto.getCate());
@@ -257,10 +264,20 @@ public class ArticleDAO extends DBhelper{
 				psmt.setString(4, dto.getWriter());
 				psmt.setString(5, dto.getRegip());
 				psmt.executeUpdate();
+				
+				rs = stmt.executeQuery(SQL.SELECT_MAX_NO);
+				conn.commit();
+				
+				if(rs.next()) {
+					no = rs.getInt(1);
+				}
+				
 				close();
 			}catch (Exception e) {
-				e.printStackTrace();
+				logger.error("insertComment() : "+e.getMessage());
 			}
+			
+			return no;
 		}
 		
 		public void updateAticleForCommentPlus(String no) {
@@ -287,28 +304,32 @@ public class ArticleDAO extends DBhelper{
 			}
 		}
 
-		public void updateComment(String no, String content) {
+		public int updateComment(String no, String content) {
+			int result = 0;
 			try {
 				conn = getConnection();
 				psmt = conn.prepareStatement(SQL.UPDATE_COMMENT);
 				psmt.setString(1, content);
 				psmt.setString(2, no);
-				psmt.executeUpdate();
+				result=psmt.executeUpdate();
 				close();
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
+			return result;
 		}
 		
-		public void deleteComment(String no) {
+		public int deleteComment(String no) {
+			int result = 0;
 			try {
 				conn = getConnection();
 				psmt = conn.prepareStatement(SQL.DELETE_COMMENT);
 				psmt.setString(1, no);
-				psmt.executeUpdate();
+				result = psmt.executeUpdate();
 				close();
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
+			return result;
 		}
 }

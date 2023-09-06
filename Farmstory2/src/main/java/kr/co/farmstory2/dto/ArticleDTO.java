@@ -118,4 +118,13 @@ public class ArticleDTO {
 	public void setFileDto(FileDTO fileDto) {
 		this.fileDto = fileDto;
 	}
+	@Override
+	public String toString() {
+		return "ArticleDTO [no=" + no + ", parent=" + parent + ", comment=" + comment + ", cate=" + cate + ", title="
+				+ title + ", content=" + content + ", file=" + file + ", hit=" + hit + ", writer=" + writer + ", regip="
+				+ regip + ", rdate=" + rdate + ", nick=" + nick + ", fileDto=" + fileDto + "]";
+	}
+	
+	
+	
 }

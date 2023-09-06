@@ -2,7 +2,6 @@ package kr.co.farmstory2.controller.board;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.gson.JsonObject;
 
 import kr.co.farmstory2.dto.ArticleDTO;
 import kr.co.farmstory2.service.ArticleService;
@@ -26,42 +27,56 @@ public class CommentController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
+		String kind = req.getParameter("kind");
+		String no = req.getParameter("no");
+		String content = req.getParameter("content");
 		
+		logger.debug("no : "+no);
+		logger.debug("content : "+content);
+		int result = 0;
+		switch(kind) {
+		case"REMOVE":
+			result = service.deleteComment(no);
+			break;
+		case"MODIFY":
+			result = service.updateComment(no,content);
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/board/view.jsp");
-		dispatcher.forward(req, resp);
+		}
+		logger.debug("Result : "+result);
+		//Json 출력
+		JsonObject json = new JsonObject();
+		json.addProperty("result", result);
+		resp.getWriter().print(json);
+	
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		String no = req.getParameter("no");
-		String writer = req.getParameter("uid");
-		String group = req.getParameter("group");
+		String parent = req.getParameter("parent");
+		String writer = req.getParameter("writer");
 		String cate = req.getParameter("cate");
 		String content = req.getParameter("content");
 		String regip = req.getRemoteAddr();
 		
-		logger.debug("no : "+no);
-		logger.debug("uid : "+writer);
-		logger.debug("group : "+group);
+		logger.debug("no : "+parent);
+		logger.debug("writer : "+writer);
 		logger.debug("cate : "+cate);
 		logger.debug("content : "+content);
 		
 		ArticleDTO dto = new ArticleDTO();
-		dto.setParent(no);
+		dto.setParent(parent);
 		dto.setWriter(writer);
 		dto.setCate(cate);
 		dto.setContent(content);
 		dto.setRegip(regip);
 		
-		service.insertComment(dto);
+		int no  = service.insertComment(dto);
 		
-		
-		req.setAttribute("group", group);
-		req.setAttribute("cate", cate);
-		resp.sendRedirect("/Farmstory2/board/view.do?group="+group+"&cate="+cate+"&no="+no);
-		
+		//Json 출력(ajax 요청)
+		JsonObject json = new JsonObject();
+		json.addProperty("no", no);
+		resp.getWriter().print(json);
 		
 		
 	}

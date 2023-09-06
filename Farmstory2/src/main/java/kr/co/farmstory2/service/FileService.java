@@ -15,4 +15,8 @@ public enum FileService {
 	public FileDTO selectFile(String fno) {
 		return dao.selectFile(fno);
 	}
+	
+	public void updateFile(FileDTO filedto) {
+		dao.updateFile(filedto);
+	}
 }

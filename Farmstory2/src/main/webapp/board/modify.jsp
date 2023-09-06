@@ -4,21 +4,29 @@
 			<section class="modify">
 			    <h3>글수정</h3>
 			    <article>
-			        <form action="#" method="post">
-			            <table>
+			        <form action="${ctxPath}/board/modify.do" method="post" enctype="multipart/form-data" >
+			        <input type="hidden" name = "no" value="${article.no }">		            
+			        <input type="hidden" name = "group" value="${group }">		            
+			        <input type="hidden" name = "cate" value="${cate }">		            
+			        <table>
 			                <tr>
 			                    <td>제목</td>
-			                    <td><input type="text" name="title" value="제목" placeholder="제목을 입력하세요."/></td>
+			                    <td><input type="text" name="title" value="${article.title }" placeholder="제목을 입력하세요."/></td>
 			                </tr>
 			                <tr>
 			                    <td>내용</td>
 			                    <td>
-			                        <textarea name="content">내용</textarea>
+			                        <textarea name="content">${article.content }</textarea>
 			                    </td>
 			                </tr>
 			                <tr>
 			                    <td>첨부</td>
-			                    <td><input type="file" name="file"/></td>
+			                    <td>
+			                    <c:if test="${ article.file>0}">
+			                    	<input type="text" name="ofile" value="${article.fileDto.ofile}"/>
+			                    </c:if>	
+			                    	<input type="file" name="file"/>
+			                    </td>
 			                </tr>
 			            </table>
 			            <div>

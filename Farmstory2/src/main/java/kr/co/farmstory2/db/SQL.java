@@ -71,7 +71,7 @@ public class SQL {
 	
 	
 	
-	public final static String UPDATE_ARTICLE = "UPDATE `Article` SET `title`=?, `content`=? WHERE `no`=?";
+	public final static String UPDATE_ARTICLE = "UPDATE `Article` SET `title`=?, `content`=? , `file`=? WHERE `no`=?";
 	public final static String UPDATE_ARTICLE_FOR_COMMENT_PLUS = "UPDATE `Article` SET `comment` = `comment` + 1 WHERE `no`=?";
 	public final static String UPDATE_ARTICLE_FOR_COMMENT_MINUS = "UPDATE `Article` SET `comment` = `comment` - 1 WHERE `no`=?";
 	public final static String UPDATE_COMMENT = "UPDATE `Article` SET `content`=? WHERE `no`=?";
@@ -136,6 +136,12 @@ public class SQL {
 											+"`sfile`=? ,"
 											+"`rdate`=NOW() ";
 	public static final String SELECT_FILE ="SELECT * FROM `File` where fno=?";
+	
+	public static final String UPDATE_FILE ="UPDATE `File` set " 
+											+"ofile=?, "
+											+"sfile=?, "
+											+"rdate=NOW() "
+											+ "WHERE ano=?";
 	
 											
 }
