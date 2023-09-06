@@ -2,6 +2,7 @@ package kr.co.jboard2.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,7 +37,7 @@ public class DeleteController extends HttpServlet {
 	
 	
 	//파일 삭제(DB)-sql에서 파일이 article테이블을 참조하므로 파일 먼저 삭제해야지 글을 삭제할 수 있다.
-	int result = fService.deleteFile(no);
+	List<String> snames = fService.deleteFile(no);
 	
 	//글+댓글 삭제
 			aService.deleteArticle(no);
@@ -46,16 +47,18 @@ public class DeleteController extends HttpServlet {
 	//int가 1이면 파일이 삭제되었다는 것이고, 0이면 파일이 없다는 것이므로 int값의 유무로 파일의 유무를 확인할 수 있다.
 	//sName이 directory의 파일명이므로, 파일을 지울 때 용이하다.
 	//deleteFile을 할 때 파일 명을 받는 것이 가장 좋다.
-	if(result>0) {
-		String path = aService.getFilePath(req);
-		
-		File file = new File(path+"/"+"파일명");
-		
-		if(file.exists()) {
-			file.delete();
-		}
-	}
 	
+	//파일 삭제(Directory)
+			if(!snames.isEmpty()) {
+		String path = aService.getFilePath(req);
+		for(String sname : snames) {
+		File file = new File(path+"/"+sname);
+		
+			if(file.exists()) {
+				file.delete();
+				}
+			}
+		}
 	
 	
 	

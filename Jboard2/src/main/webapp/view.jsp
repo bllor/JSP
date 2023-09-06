@@ -72,7 +72,7 @@
  			const jsonData ={
  					"content": content,
  					"parent" : parent,
- 					"writer" : writer,
+ 					"writer" : writer
  					
  			};
  			

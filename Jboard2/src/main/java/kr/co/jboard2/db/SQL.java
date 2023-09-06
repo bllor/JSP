@@ -127,6 +127,8 @@ public class SQL {
 	
 	public final static String SELECT_FILE ="select * from `File` where `fno`=?";
 	
+	public final static String SELECT_FILE_SNAMES ="SELECT `sfile` from `File` where `ano`=? ";
+	
 	public final static String DELETE_FILE="delete  from `File` where ano=?";
 	//fno로 하면 같은 글에 대해서 파일이 여러개 일 때 여러 개 모두를 삭제할 수 없음
 	//글번호로 하게 되면 글을 지울 때 여러 개의 파일 모두를 삭제할 수 있으므로, ano로 한다.

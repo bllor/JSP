@@ -14,6 +14,7 @@ public class DBHelper {
 
 	protected Connection conn = null;
 	protected PreparedStatement psmt= null;
+	protected PreparedStatement psmt1= null;
 	protected Statement stmt = null;
 	protected ResultSet rs= null;
 	
@@ -43,6 +44,9 @@ public class DBHelper {
 			stmt.close();
 		}
 		if(psmt!=null) {
+			psmt.close();
+		}
+		if(psmt1!=null) {
 			psmt.close();
 		}
 		if(conn!=null) {
