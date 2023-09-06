@@ -24,6 +24,7 @@
 			                    <td>
 			                    <c:if test="${ article.file>0}">
 			                    	<input type="text" name="ofile" value="${article.fileDto.ofile}"/>
+			                    	<input type="hidden" name="ofileFno" value="${article.fileDto.fno}"/>
 			                    </c:if>	
 			                    	<input type="file" name="file"/>
 			                    </td>

@@ -212,7 +212,7 @@ $(function(){
 			        </tr>
 			    </table>
 			    <div>
-					<a href="#" class="btnDelete">삭제</a>
+					<a href="${ctxPath }/board/delete.do?group=${group}&cate=${cate}&no=${article.no}" class="btnDelete">삭제</a>
 					<a href="${ctxPath }/board/modify.do?group=${group}&cate=${cate}&no=${article.no}" class="btnModify">수정</a>
 					<a href="${ctxPath }/board/list.do?group=${group}&cate=${cate}" class="btnList">목록</a>
 					

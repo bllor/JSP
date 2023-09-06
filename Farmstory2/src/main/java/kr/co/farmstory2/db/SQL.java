@@ -131,17 +131,21 @@ public class SQL {
 	
 	//File
 	public static final String INSERT_FILE = "INSERT INTO `File` set "
-											+"`ano`=? ,"
-											+"`ofile`=? ,"
-											+"`sfile`=? ,"
+											+"`ano`=? , "
+											+"`ofile`=? , "
+											+"`sfile`=? , "
 											+"`rdate`=NOW() ";
 	public static final String SELECT_FILE ="SELECT * FROM `File` where fno=?";
+	
+	public static final String SELECT_FILE_SNAMES="select `sfile` from `File` where `ano`=? ";
 	
 	public static final String UPDATE_FILE ="UPDATE `File` set " 
 											+"ofile=?, "
 											+"sfile=?, "
 											+"rdate=NOW() "
-											+ "WHERE ano=?";
+											+"WHERE fno=? ";
+	
+	public static final String DELETE_FILE = "DELETE from `File` where ano =? ";
 	
 											
 }

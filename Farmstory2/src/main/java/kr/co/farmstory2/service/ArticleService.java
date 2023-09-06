@@ -51,8 +51,8 @@ public class ArticleService {
 		 dao.updateArticle(dto);
 	}
 	
-	public void deleteArticle() {
-		
+	public void deleteArticle(String no) {
+		dao.deleteArticle(no);
 		
 	}
 	//업로드 경로 구하기

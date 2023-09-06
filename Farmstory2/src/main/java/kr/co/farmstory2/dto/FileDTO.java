@@ -15,6 +15,11 @@ public class FileDTO {
 	public void setFno(int fno) {
 		this.fno = fno;
 	}
+	
+	public void setFno(String fno) {
+		this.fno = Integer.parseInt(fno);
+	}
+	
 	public int getAno() {
 		return ano;
 	}

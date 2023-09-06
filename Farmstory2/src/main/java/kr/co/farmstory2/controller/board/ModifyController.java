@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.taglibs.standard.tag.common.fmt.ParseDateSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,6 +62,7 @@ public class ModifyController extends HttpServlet {
 		String oName = mr.getOriginalFileName("file");//새로운 파일명
 		logger.debug("file : "+oName);
 		String ofile = mr.getParameter("ofile");//기존 파일명
+		String fno = mr.getParameter("ofileFno");//기존 파일명
 		int file =0;
 		if(oName!=null||ofile!=null) {
 			//oName이 null이 아니거나 ofile이 null이 아닌 경우,
@@ -94,11 +94,17 @@ public class ModifyController extends HttpServlet {
 		
 			String sName = aService.renameTOFile(req, oName);
 			FileDTO filedto = new FileDTO();
-			filedto.setAno(no);
 			filedto.setOfile(oName);
 			filedto.setSfile(sName);
+			if(ofile==null) {
+			fService.insertFile(filedto);
+			filedto.setAno(no);//insert하기 위해서 article의 번호를 지정
+			logger.info("file insert");
+			}else {
+			filedto.setFno(fno);//파일 DB에서 이미 업로드된 파일을 지정하기 위해서 fno를 사용	
 			fService.updateFile(filedto);
-		
+			logger.info("file update");
+			}
 		}
 	
 		resp.sendRedirect("/Farmstory2/board/view.do?group="+group+"&cate="+cate+"&no="+no);
