@@ -23,6 +23,9 @@ public class ProductDAO extends DBhelper {
 		
 		// 기본 CRUD
 		public void insertProduct(ProductDTO dto) {
+			
+			logger.info(dto.toString());
+			
 			try {
 				conn = getConnection();
 				psmt = conn.prepareStatement(SQL.INSERT_PRODUCT);

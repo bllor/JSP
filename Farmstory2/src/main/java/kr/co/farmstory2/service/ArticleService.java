@@ -74,10 +74,12 @@ public class ArticleService {
 		
 		try {
 			mr = new MultipartRequest(req,path,maxSize,"UTF-8", new DefaultFileRenamePolicy());
+			
+		
 		} catch (IOException e) {
 			logger.error("uploadFile : "+e.getMessage());
 		}
-		
+		logger.debug("uploadfile : "+ mr.toString());
 		return mr;
 	}
 	
@@ -91,12 +93,17 @@ public class ArticleService {
 		String sName = uuid+ext;
 		
 		File f1 = new File(path+"/"+oName);
+		logger.debug("f1 : "+f1);
 		File f2 = new File(path+"/"+sName);
+		logger.debug("f2 : "+f2);
+
 		
 		//파일명 수정
 		f1.renameTo(f2);
-		
+		logger.debug("mof1 : "+f1);
+		logger.debug("mof2 : "+f2);
 		return sName;
+		
 	}
 	
 	

@@ -37,7 +37,12 @@ public class ProductRegisterController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		MultipartRequest mr = aService.uploadfile(req);
-	
+		String path = aService.getFilePath(req);
+		
+		logger.debug("path : "+path);
+		logger.debug("mr : "+mr.toString());
+		
+		
 		String productName = mr.getParameter("productName");
 		String type        = mr.getParameter("type");
 		String price       = mr.getParameter("price");
@@ -54,6 +59,7 @@ public class ProductRegisterController extends HttpServlet {
 		logger.debug("thumb3 : "+thumb3);
 		
 		ProductDTO dto = new ProductDTO();
+		
 		dto.setpName(productName);
 		dto.setType(type);
 		dto.setPrice(price);
@@ -65,10 +71,16 @@ public class ProductRegisterController extends HttpServlet {
 		dto.setSeller(seller);
 		dto.setEtc(etc);
 		
-		pService.insertProduct(dto);
+		/*
+		ProductDTO dto = new ProductDTO(path);
+		path의 경로에 
+		*/
+		
+		logger.debug("dto : "+dto);
+		//pService.insertProduct(dto);
 		
 		
-		resp.sendRedirect("/Farmstory2/admin/productList.do");
+		//resp.sendRedirect("/Farmstory2/admin/productList.do");
 		
 	}
 	
