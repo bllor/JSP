@@ -20,20 +20,22 @@
 
                     <!-- 내용 시작 -->
                     <p class="sort">
-                        <a href="#" class="on">전체(10) |</a>
-                        <a href="#">과일 |</a>
-                        <a href="#">야채 |</a>
-                        <a href="#">곡류</a>
+                        <a href="${ctxPath }/market/list.do?type=0" class="${type eq 0 ? "on" : "off"}">전체<c:if test = "${type==0}">(${total })</c:if>&nbsp;|</a>
+                        <a href="${ctxPath }/market/list.do?type=1" class="${type eq 1 ? "on" : "off"}>과일<c:if test="${type==1 }">(${total })</c:if>&nbsp; |</a>
+                        <a href="${ctxPath }/market/list.do?type=2" class="${type eq 2 ? "on" : "off"}>야채 <c:if test ="${type==2 }" >(${total })</c:if>&nbsp;|</a>
+                        <a href="${ctxPath }/market/list.do?type=3" class="${type eq 3 ? "on" : "off"}">곡류<c:if test="${type==3 }">(${total })</c:if>&nbsp; </a>
                     </p>
                     <table border="0">
+                        <c:forEach var = "product" items="${ products}">
                         <tr>
                             <td>
-                                <a href="./view.html"><img src="${ctxPath}/images/market_item1.jpg" alt="사과 500g"></a>
+                                <a href="${ctxPath }/market/view.do?pNo=${product.pNo}"><img src="${ctxPath}/upload/${product.thumb1}" class="thumb" alt="${product.etc}"></a>
                             </td>
                             <td>과일</td>
                             <td><a href="#">사과 500g</a></td>
                             <td><strong>4,000</strong>원</td>
                         </tr>
+                        </c:forEach>
                         <tr>
                             <td>
                                 <a href="./view.html"><img src="${ctxPath}/images/market_item2.jpg" alt="배 5kg"></a>

@@ -46,7 +46,7 @@
                 <c:otherwise>
                 <a href="${ctxPath}/index.do">HOME |</a>
                 <a href="${ctxPath}/user/logOut.do">로그아웃 |</a>
-                <c:if test="${!sessUser.role eq USER}">
+                <c:if test="${sessUser.role ne USER}">
                 <a href="${ctxPath}/admin/index.do">관리자 |</a>
                 </c:if>
                 <a href="#">고객센터</a>

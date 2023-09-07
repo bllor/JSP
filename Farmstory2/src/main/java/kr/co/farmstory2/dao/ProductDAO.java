@@ -3,12 +3,23 @@ package kr.co.farmstory2.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import  kr.co.farmstory2.db.DBhelper;
 import  kr.co.farmstory2.db.SQL;
 import  kr.co.farmstory2.dto.ProductDTO;
 
 public class ProductDAO extends DBhelper {
 	
+	private static ProductDAO instance = new ProductDAO();
+	public static ProductDAO getInstance(){
+		return instance;
+	}
+	private ProductDAO() {};
+	
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 		
 		// 기본 CRUD
 		public void insertProduct(ProductDTO dto) {
@@ -28,7 +39,7 @@ public class ProductDAO extends DBhelper {
 				psmt.executeUpdate();
 				close();
 			}catch (Exception e) {
-				e.printStackTrace();
+				logger.error("insertProduct : "+e.getMessage());
 			}
 		}
 		
