@@ -138,5 +138,15 @@ public class OrderDTO {
 	public void setThumb1(String thumb1) {
 		this.thumb1 = thumb1;
 	}
+	@Override
+	public String toString() {
+		return "OrderDTO [orderNo=" + orderNo + ", orderProduct=" + orderProduct + ", orderCount=" + orderCount
+				+ ", orderDelivery=" + orderDelivery + ", orderPrice=" + orderPrice + ", orderTotal=" + orderTotal
+				+ ", receiver=" + receiver + ", hp=" + hp + ", zip=" + zip + ", addr1=" + addr1 + ", addr2=" + addr2
+				+ ", orderEtc=" + orderEtc + ", orderUser=" + orderUser + ", orderDate=" + orderDate + ", pName="
+				+ pName + ", thumb1=" + thumb1 + "]";
+	}
 
+	
+	
 }

@@ -37,7 +37,7 @@ public class ProductRegisterController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		MultipartRequest mr = aService.uploadfile(req);
-		String path = aService.getFilePath(req);
+		String path = pService.getFilePath(req);
 		
 		logger.debug("path : "+path);
 		logger.debug("mr : "+mr.toString());
@@ -58,7 +58,7 @@ public class ProductRegisterController extends HttpServlet {
 		logger.debug("thumb2 : "+thumb2);
 		logger.debug("thumb3 : "+thumb3);
 		
-		ProductDTO dto = new ProductDTO();
+		ProductDTO dto = new ProductDTO(path);
 		
 		dto.setpName(productName);
 		dto.setType(type);
@@ -77,10 +77,10 @@ public class ProductRegisterController extends HttpServlet {
 		*/
 		
 		logger.debug("dto : "+dto);
-		//pService.insertProduct(dto);
+		pService.insertProduct(dto);
 		
 		
-		//resp.sendRedirect("/Farmstory2/admin/productList.do");
+		resp.sendRedirect("/Farmstory2/admin/productList.do");
 		
 	}
 	

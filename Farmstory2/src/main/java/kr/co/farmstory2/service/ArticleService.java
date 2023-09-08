@@ -66,7 +66,7 @@ public class ArticleService {
 	//파일 업로드
 	public MultipartRequest uploadfile(HttpServletRequest req) {
 		//파일 경로 구하기
-		String path = getFilePath(req);
+		String path = ProductService.INSTANCE.getFilePath(req);
 		//최대 업로드 파일 크기
 		int maxSize = 1024*1024*10;
 		//파일 업로드 Multipart 객체 생성

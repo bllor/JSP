@@ -96,5 +96,13 @@ public class UserDTO {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
+	@Override
+	public String toString() {
+		return "UserDTO [uid=" + uid + ", pass=" + pass + ", name=" + name + ", nick=" + nick + ", email=" + email
+				+ ", hp=" + hp + ", addr1=" + addr1 + ", addr2=" + addr2 + ", zip=" + zip + ", regip=" + regip
+				+ ", regdate=" + regdate + ", role=" + role + ", leaveDate=" + leaveDate + "]";
+	}
+
+	
 	
 }

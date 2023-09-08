@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 //시작페이지 index.jsp가 없기 때문에 기본 주소("")에 대한 매핑을 추가
 //main 페이지가 index페이지인데 index.jsp로 들어갈 수 없으므로 기존 페이지에 매핑을 함
-@WebServlet({"","/index.do"})
+@WebServlet(value={"", "/index.do"})
 public class IndexController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;

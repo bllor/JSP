@@ -60,6 +60,7 @@ public class ProductDAO extends DBhelper {
 					dto.setType(rs.getInt(2));
 					dto.setpName(rs.getString(3));
 					dto.setPrice(rs.getInt(4));
+					dto.setPriceWithComma(rs.getString(4));//3자리 콤마가 적용된 가격
 					dto.setDelivery(rs.getInt(5));
 					dto.setStock(rs.getInt(6));
 					dto.setSold(rs.getInt(7));

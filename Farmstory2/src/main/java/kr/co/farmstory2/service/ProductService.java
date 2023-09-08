@@ -72,6 +72,12 @@ public enum ProductService {
 		dao.insertProduct(dto);
 	}
 	
+	//제품 선택
+	public ProductDTO selectProduct(String pNo) {
+		return dao.selectProduct(pNo);
+	}
+	
+	
 	//제품목록
 	public List<ProductDTO>selectProducts(String type,int start){
 		return dao.selectProducts(type, start);

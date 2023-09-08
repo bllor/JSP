@@ -3,7 +3,7 @@
 <script src="${ ctxPath}/js/zipcode.js"></script>
 <script src="${ ctxPath}/js/validation.js"></script>
 <script src="${ ctxPath}/js/checkUser.js"></script>
-
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <div id="user">
             <section id="user" class="register">
             <form  id ="formUser" action="${ctxPath}/user/register.do" method="POST">

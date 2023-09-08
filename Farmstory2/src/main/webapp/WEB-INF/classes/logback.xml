@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-	<property name="NAME" value="Jboard2"/>	
+	<property name="NAME" value="Farmstory2"/>	
 	<property name="LOG_DIR" value="/logs"/>
 	
 	<!-- 콘솔 어펜더 -->
@@ -44,8 +44,10 @@
 		</encoder>
 	</appender>
   
-	<root level="debug">
-		<appender-ref ref="STDOUT" />		
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="ROLLING_DAILY" />
+		<!-- 로그파일을 일자별로 만드려면 ref 에 롤링어펜터(일자별)의 어펜더 이름을 추가하면 된다. -->		
 	</root>
 	
 </configuration>
