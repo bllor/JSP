@@ -135,11 +135,16 @@ public class ProductDTO {
 	public void setEtc(String etc) {
 		this.etc = etc;
 	}
-	public String getRdate() {
-		return rdate;
-	}
+	
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
+	}
+	
+	public String getRdate() {
+		return rdate.substring(2, 10);
+	}
+	public String getFullRdate() {
+		return rdate;
 	}
 	
 	public String fileRename(String thumb) {

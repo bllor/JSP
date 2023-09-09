@@ -82,16 +82,16 @@ public class SQL {
 	
 	// Product
 	public final static String INSERT_PRODUCT = "INSERT INTO `Product` SET "
-												+ "`type`=?,"
-												+ "`pName`=?,"
-												+ "`price`=?,"
-												+ "`delivery`=?,"
-												+ "`stock`=?,"
-												+ "`thumb1`=?,"
-												+ "`thumb2`=?,"
-												+ "`thumb3`=?,"
-												+ "`seller`=?,"
-												+ "`etc`=?,"
+												+ "`type`=?, "
+												+ "`pName`=?, "
+												+ "`price`=?, "
+												+ "`delivery`=?, "
+												+ "`stock`=?, "
+												+ "`thumb1`=?, "
+												+ "`thumb2`=?, "
+												+ "`thumb3`=?, "
+												+ "`seller`=?, "
+												+ "`etc`=?, "
 												+ "`rdate`=NOW()";
 	
 	public final static String SELECT_PRODUCTS_ALL = "SELECT * FROM `Product` WHERE `stock` > 0 order by pNo desc LIMIT ?, 10 ";

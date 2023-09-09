@@ -1,5 +1,7 @@
 package kr.co.farmstory2.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,6 +16,14 @@ public enum OrderService {
 	
 	public void insertOrder(OrderDTO dto) {
 		dao.insertOrder(dto);
+	}
+	
+	public List<OrderDTO> selectOrders(int start){
+		return dao.selectOrders(start);
+	}
+	
+	public int selectCountOrdersTotal() {
+		return dao.selectCountOrders();
 	}
 	
 }

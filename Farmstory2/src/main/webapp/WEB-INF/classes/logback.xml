@@ -44,7 +44,7 @@
 		</encoder>
 	</appender>
   
-	<root level="INFO">
+	<root level="DEBUG">
 		<appender-ref ref="STDOUT" /><!-- 얘를 추가해야지 콘솔창에 로그가 뜬다. -->
 		<appender-ref ref="ROLLING_DAILY" />
 		<!-- 로그파일을 일자별로 만드려면 ref 에 롤링어펜터(일자별)의 어펜더 이름을 추가하면 된다. -->		

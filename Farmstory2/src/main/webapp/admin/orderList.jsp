@@ -5,6 +5,7 @@
 
             $('.showPopup').click(function(e){
                 e.preventDefault();
+                const order=$(this).val();
                 $('#orderPopup').show();
             });
 
@@ -43,18 +44,20 @@
                             <th>주문일</th>
                             <th>확인</th>
                         </tr>
+                        <c:forEach var="order" items="${orders}" >
                         <tr>
                             <td><input type="checkbox" name=""/></td>
-                            <td>1001</td>
-                            <td>사과 500g</td>                            
-                            <td>4,000원</td>
-                            <td>2</td>
-                            <td>3,000원</td>
-                            <td>11,000원</td>
-                            <td>김유신</td>
-                            <td>2023-01-01 13:06:14</td>
-                            <td><a href="#" class="showPopup">[상세확인]</a></td>
+                            <td>${order.orderNo }</td>
+                            <td>${order.pName }</td>                            
+                            <td>${order.orderPrice }</td>
+                            <td>${order.orderCount }</td>
+                            <td>${order.orderDelivery }</td>
+                            <td>${order.orderTotal }</td>
+                            <td>${order.receiver }</td>
+                            <td>${order.orderDate }</td>
+                            <td><a href="#" value="${order}" class="showPopup">[상세확인]</a></td>
                         </tr>
+                        </c:forEach>
                     </table>
 
                     <p>
@@ -62,13 +65,15 @@
                     </p>
                     
                     <p class="paging">
-                        <a href="#"><</a>
-                        <a href="#" class="on">[1]</a>
-                        <a href="#">[2]</a>
-                        <a href="#">[3]</a>
-                        <a href="#">[4]</a>
-                        <a href="#">[5]</a>
-                        <a href="#">></a>
+                        <c:if test="${pageGroupStart>1 }">
+                        <a href="${ctxPath }/admin/orderList.do?pg=${pageGroupStart-1}" class ="prev"><</a>
+                        </c:if>
+                        <c:forEach var="i" begin ="${pageGroupStart }" end="${pageGroupEnd }">
+                        <a href="${ctxPath }/admin/orderList.do?pg=${i}" class="${currentPage==i?'on':'off' }">[${i}]</a>
+                        </c:forEach>
+                        <c:if test="${pageGroupEnd < lastPageNum }">
+                        <a href="${ctxPath }/admin/orderList.do?pg=${pageGroupEnd+1}" class="next" >></a>
+                        </c:if>
                     </p>
                 </article>
             </section>
@@ -92,7 +97,7 @@
                         <tr>
                             <td rowspan="7" class="thumb"><img src="./images//sample_item1.jpg" alt="사과 500g"></td>
                             <td>상품번호</td>
-                            <td>1011</td>
+                            <td>order.orderNo</td>
                         </tr>
                         <tr>
                             <td>상품명</td>
