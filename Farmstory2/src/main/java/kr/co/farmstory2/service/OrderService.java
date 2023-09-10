@@ -26,4 +26,8 @@ public enum OrderService {
 		return dao.selectCountOrders();
 	}
 	
+	public OrderDTO selectOrder(String orderNo) {
+		return dao.selectOrder(orderNo);
+	}
+	
 }

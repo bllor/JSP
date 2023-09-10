@@ -125,7 +125,11 @@ public class SQL {
 													+ "JOIN `Product` AS b "
 													+ "ON a.orderProduct = b.pNo "
 													+ "LIMIT ?, 10";
-		
+		//product Name과 User의 이름까지 조회
+		public static final String SELECT_ORDER= "SELECT a.*, b.pName ,c.name FROM `Order` AS a"
+												+"JOIN `Product`AS b ON a.orderProduct = b.pNo"
+												+"LEFT JOIN `User` AS c ON b.seller = c.uid"
+												+"WHERE `orderNo`=?";
 		public static final String SELECT_COUNT_ORDERS = "SELECT COUNT(*) FROM `Order`";
 		public static final String DELETE_ORDER = "DELETE FROM `Order` WHERE `orderNo`=?";
 	

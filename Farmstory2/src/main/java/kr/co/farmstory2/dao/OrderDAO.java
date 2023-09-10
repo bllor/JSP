@@ -37,8 +37,19 @@ public class OrderDAO extends DBhelper {
 		}
 	}
 	
-	public OrderDTO selectOrder(int orderNo) {
-		return null;
+	public OrderDTO selectOrder(String orderNo) {
+		OrderDTO dto = null;
+		
+		try {
+			
+			conn= getConnection();
+			psmt = conn.prepareStatement(SQL.SELECT_ORDER);
+			
+		}catch (Exception e) {
+			logger.error("selectOrder : "+e.getMessage());
+		}
+		
+		return dto;
 	}
 	
 

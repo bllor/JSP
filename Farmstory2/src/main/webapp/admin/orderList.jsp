@@ -5,7 +5,14 @@
 
             $('.showPopup').click(function(e){
                 e.preventDefault();
-                const order=$(this).val();
+                const orderNo = $(this).closest('tr').find('#orderNo').text();
+                const pNo = $(this).closest('tr').find('#pNo').text();
+                const orderPrice = $(this).closest('tr').find('#orderPrice').text();
+                const orderCount = $(this).closest('tr').find('#orderCount').text();
+                const orderDelivery = $(this).closest('tr').find('#orderDelivery').text();
+                const orderDate = $(this).closest('tr').find('#orderDate').text();
+                
+                console.log(orderNo);
                 $('#orderPopup').show();
             });
 
@@ -47,14 +54,14 @@
                         <c:forEach var="order" items="${orders}" >
                         <tr>
                             <td><input type="checkbox" name=""/></td>
-                            <td>${order.orderNo }</td>
-                            <td>${order.pName }</td>                            
-                            <td>${order.orderPrice }</td>
-                            <td>${order.orderCount }</td>
-                            <td>${order.orderDelivery }</td>
-                            <td>${order.orderTotal }</td>
-                            <td>${order.receiver }</td>
-                            <td>${order.orderDate }</td>
+                            <td id ="orderNo">${order.orderNo }</td>
+                            <td id ="pNo">${order.pName }</td>                            
+                            <td id ="orderPrice">${order.orderPrice }</td>
+                            <td id ="orderCount">${order.orderCount }</td>
+                            <td id ="orderDelivery">${order.orderDelivery }</td>
+                            <td id ="orderTotal">${order.orderTotal }</td>
+                            <td id ="receiver">${order.receiver }</td>
+                            <td id ="orderDate">${order.orderDate }</td>
                             <td><a href="#" value="${order}" class="showPopup">[상세확인]</a></td>
                         </tr>
                         </c:forEach>
@@ -101,27 +108,27 @@
                         </tr>
                         <tr>
                             <td>상품명</td>
-                            <td>사과 500g</td>
+                            <td class ="no" >사과 500g</td>
                         </tr>
                         <tr>
                             <td>판매가격</td>
-                            <td>4,000원</td>
+                            <td class ="price" >4,000원</td>
                         </tr>
                         <tr>
                             <td>수량</td>
-                            <td>2개</td>
+                            <td class="count" >2개</td>
                         </tr>
                         <tr>
                             <td>배송비</td>
-                            <td>3,000원</td>
+                            <td class="delivery">3,000원</td>
                         </tr>
                         <tr>
                             <td>합계</td>
-                            <td>11,000원</td>
+                            <td class="total" >11,000원</td>
                         </tr>
                         <tr>
                             <td>주문자</td>
-                            <td>홍길동</td>
+                            <td class="receiver">홍길동</td>
                         </tr>                        
                     </table>
 
