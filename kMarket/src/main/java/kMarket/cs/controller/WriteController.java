@@ -23,12 +23,14 @@ public class WriteController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String group = req.getParameter("group");
 		String cate = req.getParameter("cate");
+		String type = "write";
 		
 		logger.debug("group : "+group);
 		logger.debug("cate : "+cate);
 		
 		req.setAttribute("group", group);
 		req.setAttribute("cate", cate);
+		req.setAttribute("type", type);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/cs/board/write.jsp");
 		dispatcher.forward(req, resp);

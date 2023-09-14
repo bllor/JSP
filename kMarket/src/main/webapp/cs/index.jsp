@@ -8,7 +8,7 @@
                     <section class="notice">
                         <h1>
                             공지사항
-                            <a href="/kMarket/cs/board/list.do?group=Notice&cate=0"">전체보기</a>
+                            <a href="/kMarket/cs/board/list.do?group=notice&cate=0"">전체보기</a>
                         </h1>                    
                         <ul>
                             <li>
@@ -36,7 +36,7 @@
                     </section>
                     <section class="faq">
                         <h1>faq
-                            <a href="/kMarket/cs/board/list.do?group=FAQ&cate=10">전체보기</a>
+                            <a href="/kMarket/cs/board/list.do?group=faq&cate=10">전체보기</a>
                         </h1>
                         <ol>
                             <li>
@@ -79,7 +79,7 @@
                     <section class="qna">
                         <h1>
                             문의하기
-                            <a href="/kMarket/cs/board/list.do?group=QNA&cate=10">전체보기</a>
+                            <a href="/kMarket/cs/board/list.do?group=qna&cate=10">전체보기</a>
                         </h1>
                         <ul>
                         <li>

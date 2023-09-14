@@ -10,13 +10,13 @@
 	});
 </script>
         <section id="cs">
-            <div class="faq">
+            <div class="${group}">
                 <nav>
                   <div>
                     <p>홈<span>></span>자주묻는 질문</p>
                   </div>  
                 </nav>
-                <section class="list">
+                <section class="${type}">
                     <aside>
                         <h2>자주묻는 질문</h2>
                         <ul>
@@ -45,6 +45,8 @@
                     </aside>
                     </aside>
                     <article>
+                    <c:choose>
+                    	<c:when test="${type eq list }">
                     <c:choose>
                 		<c:when test="${cate eq 10}">
 	                        <nav>
@@ -88,4 +90,6 @@
 	                            <h2>가장 많이 묻는 질문</h2>
 	                        </nav>
 	                    </c:when>    
+                    </c:choose>
+                    </c:when>
                     </c:choose>

@@ -3,15 +3,15 @@
 <jsp:include page="./_aside${group}.jsp" />
                        <table>
                             <tr>
-                                <td><a href="/kMarket/cs/board/view.do?group=Notice&cate=0">[안내] notice view 연결</a></td>
+                                <td><a href="/kMarket/cs/board/view.do?group=notice&cate=0">[안내] notice view 연결</a></td>
                                 <td>2022.11.11</td>
                             </tr>
                             <tr>
-                                <td><a href="/kMarket/cs/board/view.do?group=FAQ&cate=10">[안내] FAQ view 연결</a></td>
+                                <td><a href="/kMarket/cs/board/view.do?group=faq&cate=10">[안내] FAQ view 연결</a></td>
                                 <td>2022.11.11</td>
                             </tr>
                             <tr>
-                                <td><a href="/kMarket/cs/board/view.do?group=QNA&cate=10">[안내] QNA view 연결</a></td>
+                                <td><a href="/kMarket/cs/board/view.do?group=qna&cate=10">[안내] QNA view 연결</a></td>
                                 <td>2022.11.11</td>
                             </tr>
                             <tr>

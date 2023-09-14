@@ -1,13 +1,13 @@
 <%@ page  contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <section id ="cs">
-            <div class="qna">
+            <div class="${group}">
                 <nav>
                     <div>
                         <p>홈<span>></span>문의하기</p>
                     </div>
                 </nav>
-                <section class="list">
+                <section class="${type}">
                     <aside>
                         <h2>문의하기</h2>
                         <ul>
@@ -35,6 +35,8 @@
                         </ul>
                     </aside>
                     <article>
+                    <c:choose>
+                    <c:when test="${type eq list }">
                     <c:choose>
                 		<c:when test="${cate eq 10}">
 	                        <nav>
@@ -78,4 +80,7 @@
 	                            <h2>안전거래 관련 문의 내용입니다.</h2>
 	                        </nav>
 	                    </c:when>    
-                    </c:choose>    
+                    </c:choose>
+                    </c:when>
+                    </c:choose>
+               

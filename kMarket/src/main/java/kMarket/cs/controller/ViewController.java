@@ -23,12 +23,13 @@ public class ViewController extends HttpServlet  {
 	
 		String group = req.getParameter("group");
 		String cate = req.getParameter("cate");
-		
+		String type = "view";
 		logger.debug("group : "+group);
 		logger.debug("cate : "+cate);
 		
 		req.setAttribute("group", group);
 		req.setAttribute("cate", cate);
+		req.setAttribute("type", type);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/cs/board/view.jsp");
 		dispatcher.forward(req, resp);

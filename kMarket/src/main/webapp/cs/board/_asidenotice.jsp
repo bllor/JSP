@@ -1,13 +1,13 @@
 <%@ page  contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <section id ="cs">
-            <div class="notice">
+            <div class="${group}">
                 <nav>
                     <div>
                         <p>홈<span>></span>공지사항</p>
                     </div>
                 </nav>
-                <section class="list">
+                <section class="${type}">
                     <aside>
                         <h2>공지사항</h2>
                         <ul>
@@ -31,6 +31,8 @@
                     </aside>
                     <article>
                     <c:choose>
+                    	<c:when test="${type eq 'list'}">
+                		<c:choose>
                 		<c:when test="${cate eq 0}">
 	                        <nav>
 	                            <h1>전체</h1>
@@ -60,5 +62,7 @@
 	                            <h1>이벤트상품</h1>
 	                            <h2>이벤트상품 전체 내용입니다.</h2>
 	                        </nav>
+	                    </c:when>
+	                    </c:choose>
 	                    </c:when>    
                     </c:choose>    

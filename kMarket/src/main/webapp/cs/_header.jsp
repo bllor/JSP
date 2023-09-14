@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>케이마켓고객센터</title>
-    <link rel="shortcut icon" type="images/x-icon" href="../images/favicon.ico">
+    <link rel="shortcut icon" type="images/x-icon" href="/kMarket/cs/images/favicon.ico">
     <link rel="stylesheet" href="/kMarket/cs/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 </head>
