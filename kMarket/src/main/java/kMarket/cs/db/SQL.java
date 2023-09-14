@@ -2,7 +2,7 @@ package kMarket.cs.db;
 
 public class SQL {
 
-	public static final String INSERT_ARTICLE= "INSERT INTO `cs` SET `cCate`=?, "
+	public static final String INSERT_ARTICLE= "INSERT INTO `CsArticle` SET `cate`=?, "
 																	+ "`writer`=?, "
 																	+ "`title`=?, "
 																	+ "`content`=?, "
@@ -10,7 +10,7 @@ public class SQL {
 																	+ "`file`=?, "
 																	+ "`rdate`=NOW()";
 	
-	public final static String SELECT_MAX_NO = "SELECT MAX(`cNo`) From `cs`";
+	public final static String SELECT_MAX_NO = "SELECT MAX(`cNo`) From `CsArticle`";
 	
 	
 	//File

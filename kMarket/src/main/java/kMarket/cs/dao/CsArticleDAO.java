@@ -5,12 +5,13 @@ import org.slf4j.LoggerFactory;
 
 import kMarket.cs.db.DBhelper;
 import kMarket.cs.db.SQL;
-import kMarket.cs.dto.CSDTO;
+import kMarket.cs.dto.CsArticleDTO;
 
-public class CSDAO extends DBhelper {
+public class CsArticleDAO extends DBhelper {
+	
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	public int insertArticle(CSDTO dto) {
+	public int insertArticle(CsArticleDTO dto) {
 		int no = 0;
 		try {
 			
@@ -19,7 +20,7 @@ public class CSDAO extends DBhelper {
 			
 			stmt = conn.createStatement();
 			psmt = conn.prepareStatement(SQL.INSERT_ARTICLE);
-			psmt.setString(1, dto.getcCate());
+			psmt.setString(1, dto.getCate());
 			psmt.setString(2, dto.getWriter());
 			psmt.setString(3, dto.getTitle());
 			psmt.setString(4, dto.getContent());
@@ -57,4 +58,6 @@ public class CSDAO extends DBhelper {
 			
 		}
 		
+
+	
 }

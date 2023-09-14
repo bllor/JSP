@@ -1,14 +1,10 @@
 package kMarket.cs.dto;
 
-
-
-public class CSDTO {
-
-	
+public class CsArticleDTO {
 	private String cNo;
 	private String parent;
 	private String comment;
-	private String cCate;
+	private String cate;
 	private String title;
 	private String content;
 	private String file;
@@ -38,11 +34,11 @@ public class CSDTO {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public String getcCate() {
-		return cCate;
+	public String getCate() {
+		return cate;
 	}
-	public void setcCate(String cCate) {
-		this.cCate = cCate;
+	public void setCate(String cate) {
+		this.cate = cate;
 	}
 	public String getTitle() {
 		return title;
@@ -59,18 +55,15 @@ public class CSDTO {
 	public String getFile() {
 		return file;
 	}
-	
-	//oName추가
-			public void setFile(String oName) {
-				if(oName != null) {
-					
-					this.file="1";
-				}else {
-					this.file="0";
-				}
-			}
-	
-			public String getHit() {
+	public void setFile(String oName) {
+		if(oName != null) {
+			
+			this.file="1";
+		}else {
+			this.file="0";
+		}
+	}
+	public String getHit() {
 		return hit;
 	}
 	public void setHit(String hit) {
@@ -98,13 +91,10 @@ public class CSDTO {
 	public FileDTO getFileDto() {
 		return fileDto;
 	}
+	
 	public void setFileDto(FileDTO fileDto) {
 		this.fileDto = fileDto;
 	}
 	
-	
-		
-	
-	
-	
+
 }

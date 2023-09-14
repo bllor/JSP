@@ -2,7 +2,9 @@
 <%@include file ="../_header.jsp" %>
 <jsp:include page="./_aside${group}.jsp" />
                         <form action="./write.do" method ="post" enctype="multipart/form-data">
-                            <input type="hidden" name="cCate" value="10">
+                            <input type="hidden" name="group" value="${group }">
+                            <input type="hidden" name="type" value="${type }">
+                            <input type="hidden" name="cate" value="10">
                             <input type="hidden" name="writer" value="writer">
                             <table>
                                <tbody>
@@ -23,11 +25,11 @@
                                </c:when>
                                </c:choose> 
                                 <tr>
-                                    <td>문의제목</td>
+                                    <td>${group eq 'qna'?'문의제목':'공지사항'}</td>
                                     <td><input type="text" name="title" placeholder="제목을 입력하시오."></td>
                                 </tr>
                                 <tr>
-                                    <td>문의내용</td>
+                                    <td>${group eq 'qna'?'문의내용':'공지내용'}</td>
                                     <td>
                                         <textarea name="content" placeholder="내용을 입력하시오."></textarea>
                                     </td>
