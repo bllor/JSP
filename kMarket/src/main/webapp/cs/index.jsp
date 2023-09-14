@@ -8,11 +8,11 @@
                     <section class="notice">
                         <h1>
                             공지사항
-                            <a href="./notice/list.do">전체보기</a>
+                            <a href="/kMarket/cs/board/list.do?group=Notice&cate=0"">전체보기</a>
                         </h1>                    
                         <ul>
                             <li>
-                                <a href="./notice/list.do" class="title">[안내]notice/list연결</a>
+                                <a href="/kMarket/cs/board/list.do?group=notice&cate=10" class="title">[안내]notice/list연결</a>
                                 <span class="date">23.09.09</span>
                             </li>
                             <li>
@@ -36,11 +36,11 @@
                     </section>
                     <section class="faq">
                         <h1>faq
-                            <a href="./faq/list.jsp">전체보기</a>
+                            <a href="/kMarket/cs/board/list.do?group=FAQ&cate=10">전체보기</a>
                         </h1>
                         <ol>
                             <li>
-                                <a href="./faq/list.jsp">
+                                <a href="./faq/list.do">
                                     <span>[/faq/list연결]회원</span>
                                 </a>
                             </li>
@@ -79,11 +79,11 @@
                     <section class="qna">
                         <h1>
                             문의하기
-                            <a href="./qna/list.jsp">전체보기</a>
+                            <a href="/kMarket/cs/board/list.do?group=QNA&cate=10">전체보기</a>
                         </h1>
                         <ul>
                         <li>
-                            <a href="./qna/view.jsp" class="title">
+                            <a href="./qna/view.do" class="title">
                                 [회원](Q&A VIEW로 이동)
                             </a>
                             <p>
@@ -119,7 +119,7 @@
                             </p>    
                         </li>
                         </ul>
-                        <a href="./qna/write.jsp" class="ask">
+                        <a href="./qna/write.do" class="ask">
                             문의글 작성[연결O]
                         </a>
                     </section>

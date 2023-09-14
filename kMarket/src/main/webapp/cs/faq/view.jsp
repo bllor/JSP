@@ -51,7 +51,7 @@
                                 감사합니다.<br />
                               </p>
                         </div>
-                        <a href="#" class="btnList">목록보기</a>
+                        <a href="./list.do" class="btnList">목록보기</a>
                     </article>   
                 </section> 
             </div>
