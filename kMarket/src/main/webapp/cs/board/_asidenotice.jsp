@@ -1,5 +1,18 @@
 <%@ page  contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script>
+
+$(function(){
+
+	$('.off ').click(function(e){
+		${cate}
+		
+	});
+
+
+});
+
+</script>
         <section id ="cs">
             <div class="${group}">
                 <nav>
@@ -12,19 +25,19 @@
                         <h2>공지사항</h2>
                         <ul>
                             <li class="${cate eq '0'?'on':'off'}" >
-                                <a href="#">전체</a>
+                                <a href="/kMarket/cs/board/list.do?group=notice&cate=0">전체</a>
                             </li>
                             <li class="${cate eq '1'?'on':'off'}" >
-                                <a href="#">고객서비스</a>
+                                <a href="/kMarket/cs/board/list.do?group=notice&cate=1">고객서비스</a>
                             </li>
                             <li class="${cate eq '2'?'on':'off'}" >
-                                <a href="#">안전거래</a>
+                                <a href="/kMarket/cs/board/list.do?group=notice&cate=2">안전거래</a>
                             </li>
                             <li class="${cate eq '3'?'on':'off'}" >
-                                <a href="#">위해상품</a>
+                                <a href="/kMarket/cs/board/list.do?group=notice&cate=3">위해상품</a>
                             </li>
                             <li class="${cate eq '4'?'on':'off'}" >
-                                <a href="#">이벤트당첨</a>
+                                <a href="/kMarket/cs/board/list.do?group=notice&cate=4">이벤트당첨</a>
                             </li>
 
                         </ul>
