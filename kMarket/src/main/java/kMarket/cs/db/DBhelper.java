@@ -27,7 +27,7 @@ public class DBhelper {
 			
 			Context ctx = (Context)new InitialContext().lookup("java:comp/env");
 			//Servers->Tomcat->context.xml->java:comp/env를 ctx에 넣음
-			DataSource ds = (DataSource)ctx.lookup("jdbc/userdb");
+			DataSource ds = (DataSource)ctx.lookup("jdbc/kMarket");
 			
 			 conn = ds.getConnection();
 			}catch(Exception e) {
