@@ -21,15 +21,6 @@
 - 6_session : JSP session 내장객체 실습하기
 - 7_exception : JSP exception 내장객체 실습하기
 - 8_scopeTest : JSP 내장객체 영역 실습하기</code></pre>
-### ch03. 제3장 JSP 내장객체
-<pre><code>- 1_request : JSP request 실습하기
-- 2_response : JSP response 실습하기
-- 3_out : JSP out 내장객체 실습하기
-- 4_pageContext : JSP pageContext 실습하기
-- 5_application : JSP application 내장객체 실습하기
-- 6_session : JSP session 내장객체 실습하기
-- 7_exception : JSP exception 내장객체 실습하기
-- 8_scopeTest : JSP 내장객체 영역 실습하기</code></pre>
 ### ch04. 제4장 JSP 액션태그
 <pre><code>- 1_forward_액션태그 : JSP forward 액션태그 실습하기
 - 2_include_액션태그 : JSP include 액션태그 실습하기
